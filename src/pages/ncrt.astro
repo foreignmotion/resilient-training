@@ -13,7 +13,7 @@ import edgeTransfer from '../assets/images/image07_litter-edge-transfer.jpg';
 import nightWall from '../assets/images/image02_night-wall-rappel.jpg';
 import founder from '../assets/images/image04_founder-tripod-litter-raise.jpg';
 
-const photoProps = { formats: ['avif', 'webp'] as ('avif' | 'webp')[], widths: [420, 640, 840], sizes: '(max-width: 736px) 100vw, 26rem', loading: 'lazy' as const, class: 'photo' };
+const photoProps = { formats: ['avif', 'webp'] as ('avif' | 'webp')[], widths: [420, 640, 840], sizes: '(max-width: 736px) 100vw, 26rem', loading: 'lazy' as const, class: 'photo', pictureAttributes: { class: 'photo-frame' } };
 const multiDayNote = '(Multi-day courses often end with realistic scenarios and nighttime training. All multi-day courses involve camping in a wilderness setting, and have a significantly more extensive pack list than single day courses.)';
 const videoId = 'SbS8AjeXPLM';
 ---
@@ -44,7 +44,8 @@ const videoId = 'SbS8AjeXPLM';
       </header>
       <div class="video" data-video={videoId}>
         <a class="video-facade" href={`https://www.youtube.com/watch?v=${videoId}`} aria-label="Play the NCRT video">
-          <span>
+          <img class="video-poster" src={`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`} alt="" loading="lazy" decoding="async" width="1280" height="720" />
+          <span class="video-play">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"></path></svg>
             Play video
           </span>
@@ -152,7 +153,7 @@ const videoId = 'SbS8AjeXPLM';
       <p class="t-body">My focus spans medical and rope rescue, land navigation, wilderness survival skills, and more. Currently, I conduct rescue and wilderness survival training courses across the US, with hands-on learning, enhancing content and quality with each session.</p>
       <p class="t-body">While my firsthand rescue experience is limited mostly to car wrecks and medical calls with the fire department, I've trained alongside seasoned professionals, including Special Forces and Spec Ops soldiers, mastering high-level tactical medicine. My certifications include GA State Firefighter, BLS/CPR, TECC and TCCC, with plans to pursue Firefighter 1&amp;2, WFR, and EMT/Wilderness EMT in 2025.</p>
     </div>
-    <Picture src={founder} alt="Jether English raising a litter on a tripod above a valley" formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 30rem" loading="lazy" class="founder-photo" style="flex: 1 1 26rem;" />
+    <Picture src={founder} alt="Jether English raising a litter on a tripod above a valley" formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 30rem" loading="lazy" class="founder-photo" pictureAttributes={{ class: 'founder-frame' }} />
   </section>
 
   <section id="contact" class="wrap cols anchor" style="padding-top: 3rem; padding-bottom: 5rem; gap: 5rem; align-items: flex-start;">
@@ -190,20 +191,23 @@ const videoId = 'SbS8AjeXPLM';
   .tier { width: 100%; max-width: 62rem; display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; }
   .tier > * { min-width: 0; }
   .tier-photos { flex: 1 1 21rem; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-  .photo { display: block; width: 100%; max-width: 26rem; }
-  .photo img { display: block; width: 100%; height: 32rem; object-fit: cover; }
-  .founder-photo { display: block; min-width: 0; }
-  .founder-photo img { display: block; width: 100%; height: 32rem; object-fit: cover; }
+  /* <Picture> puts `class` on the <img>; layout goes on the <picture> via pictureAttributes. */
+  .photo-frame { display: block; width: 100%; max-width: 26rem; }
+  .founder-frame { display: block; flex: 1 1 26rem; min-width: 0; }
+  .photo, .founder-photo { display: block; width: 100%; height: 32rem; object-fit: cover; }
   .video { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0.5rem 0; background: var(--night); }
   .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-  .video-facade { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--ink); text-decoration: none; border: 1px solid var(--line-faint); }
-  .video-facade:hover { color: var(--signal); }
-  .video-facade span { display: inline-flex; align-items: center; gap: 1rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  .video-facade { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--night); text-decoration: none; border: 1px solid var(--line-faint); overflow: hidden; }
+  .video-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); transition: filter 0.3s var(--ease-out); }
+  .video-facade:hover .video-poster { filter: brightness(1); }
+  .video-play { position: relative; display: inline-flex; align-items: center; gap: 0.75rem; min-height: var(--control-height); padding: 0 1.75rem 0 1.5rem; background: var(--signal); font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; transition: background-color 0.2s; }
+  .video-facade:hover .video-play, .video-facade:focus-visible .video-play { background: var(--ink); }
+  .video-play svg { fill: currentColor; }
   @media (max-width: 736px) {
     .card { width: calc(100% - 3rem); }
     .sec { padding: 3rem 1.5rem; }
-    .photo { max-width: none; }
-    .photo img, .founder-photo img { height: 24rem; }
+    .photo-frame { max-width: none; }
+    .photo, .founder-photo { height: 24rem; }
   }
 </style>
 

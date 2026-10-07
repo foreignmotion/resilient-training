@@ -76,7 +76,7 @@ const jsonLd = {
           </div>
           <div class="stack-lg" style="flex: 2 1 18rem;">
             {classPhoto && homeClassPhoto ? (
-              <Picture src={classPhoto} formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 26rem" alt={homeClassPhoto.alt} class="media" />
+              <Picture src={classPhoto} formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 26rem" alt={homeClassPhoto.alt} class="media media-4x3" pictureAttributes={{ class: 'media-frame' }} />
             ) : (
               <div class="photo-slot" role="img" aria-label="Photo placeholder">
                 <p class="eyebrow">Class photo: fire, water or shelter</p>
@@ -125,7 +125,7 @@ const jsonLd = {
   <div class="wrap" style="padding-bottom: 5rem;">
     <Panel as="section" aria-labelledby="ncrt-title">
       <div class="cols" style="gap: 4rem; align-items: center;">
-        <Picture src={nightSearch} formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 28rem" alt="An NCRT team searching the woods at night with headlamps" class="media" style="flex: 1 1 20rem; aspect-ratio: 4 / 3;" loading="lazy" />
+        <Picture src={nightSearch} formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 28rem" alt="An NCRT team searching the woods at night with headlamps" class="media media-4x3" pictureAttributes={{ class: 'media-frame', style: 'flex: 1 1 20rem;' }} loading="lazy" />
         <div class="stack" style="flex: 1 1 24rem; gap: 1.5rem;">
           <header class="section-header">
             <p class="eyebrow">Rescue and medical training</p>
