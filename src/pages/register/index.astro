@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Panel from '../../components/Panel.astro';
+import RegisterFlow from '../../islands/RegisterFlow.tsx';
+import { course, mailtoHref, site, telHref } from '../../../shared/config.ts';
+---
+<Layout
+  title={`Register: ${course.name} | ${site.orgName}`}
+  description={`Register for ${course.name}, every Wednesday ${course.timeLabel} in ${site.region}. Pick a date, sign the release and pay securely.`}
+  current="register"
+  footerLinks={[{ href: '/', label: 'Home' }, { href: '/ncrt/', label: 'NCRT' }]}
+>
+  <section id="register-top" class="wrap stack reveal anchor" style="padding-top: 5rem; padding-bottom: 3rem; gap: 1.5rem;">
+    <p class="eyebrow" id="step-label">Register · Step 1 of 3 · Your details</p>
+    <h1 class="t-heading">{course.name}</h1>
+    <p class="t-body" style="max-width: 48rem;">Every Wednesday, {course.timeLabel} in {site.region}. We email the exact training location after you register. Students under 18 need a parent or legal guardian listed.</p>
+  </section>
+
+  <div class="wrap" style="padding-bottom: 6rem;">
+    <Panel>
+      <div class="register-root">
+        <RegisterFlow client:only="preact" />
+        <noscript>
+          <p class="t-body">Registration needs JavaScript turned on. To register another way, call or text <a href={telHref()}>{site.phoneDisplay}</a> or email <a href={mailtoHref()}>{site.email}</a>.</p>
+        </noscript>
+      </div>
+    </Panel>
+  </div>
+</Layout>
+<style>
+  .register-root { min-height: 40rem; }
+</style>

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.dev.vars
+shared/legal.generated.ts
+.DS_Store
+.claude/

@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Register — Wilderness Survival Fundamentals</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/ncrt/components/bundle.css">
+<script src="ds/ncrt/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@600;700&amp;display=swap">
+<style>
+:root{--night:#13150f;--scrim:rgba(19,21,15,0.72);--panel:rgba(19,21,15,0.78);--ink:#ede7da;--ink-muted:#b8b0a0;--ink-placeholder:rgba(237,231,218,0.55);--signal:#e2863a;--line:#ede7da;--focus:#e2863a;--font-display:"Barlow Condensed",sans-serif;--font-gothic:"Barlow Condensed",sans-serif;--font-sans:Barlow,sans-serif;--space-label:0.25rem;--space-buttons:0.75rem;--space-field:1rem;--space-stack:1.75rem;--space-media:3rem;--gutter-panel:5rem;--gutter-section:5rem;--button-pad-start:2rem;--button-pad-end:1.75rem;--radius-none:0;--control-height:3.75rem;--textarea-height:10rem;--form-width:25rem;--page-width:72rem;--grain-tile:512px;--border-button:2px;--border-input:1px;--blur-panel:0.75rem}
+html{font-size:16px}
+@media (max-width:980px){html{font-size:15px}}
+body{margin:0;background:#13150f}
+.site-bg{--ncrt-photo:url("/_blob/208a891be23be3b6ebf97e97289b5009");background-attachment:scroll,scroll,fixed}
+a{color:#e2863a;text-decoration:underline;text-underline-offset:3px;transition:color .2s}a:hover{color:#ede7da}
+.wrap{max-width:72rem;margin:0 auto;padding-left:5rem;padding-right:5rem}
+.topbar{background:rgba(19,21,15,0.9);border-bottom:1px solid rgba(237,231,218,0.18)}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.375rem;letter-spacing:.06em;text-transform:uppercase;color:#ede7da;text-decoration:none}
+.brand:hover{color:#ede7da}
+.nav a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:.16em;text-transform:uppercase;color:#ede7da;text-decoration:none}
+.nav a:hover,.nav a[aria-current=page]{color:#e2863a}
+.t-heading{margin:0;font-family:var(--font-display);font-weight:700;font-size:3rem;line-height:1;letter-spacing:.02em;text-transform:uppercase;color:#ede7da}
+.t-body{margin:0;font-family:var(--font-sans);font-size:1.125rem;line-height:1.75;color:#ede7da}
+.t-tight{line-height:1.65}
+.t-item{margin:0;font-family:var(--font-display);font-weight:600;font-size:1.375rem;line-height:1.3;letter-spacing:.02em;color:#ede7da}
+.t-subhead{margin:0;font-family:var(--font-display);font-weight:600;font-size:1rem;line-height:1.4;letter-spacing:.2em;text-transform:uppercase;color:#e2863a}
+.ncrt-eyebrow{font-family:var(--font-display);font-weight:600;font-size:.875rem;line-height:1.4;letter-spacing:.22em;color:#e2863a}
+.ncrt-section-header{gap:.75rem}
+.ncrt-title{font-family:var(--font-display);font-weight:700;letter-spacing:.02em;line-height:1}
+.ncrt-title-section{font-size:3rem}.ncrt-title-tier{font-size:2.25rem}
+.ncrt-btn{font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:.18em}
+.ncrt-btn:hover{transform:none;background:rgba(237,231,218,0.1)}
+.ncrt-btn.solid{background:#e2863a;border-color:#e2863a;color:#13150f}
+.ncrt-btn.solid:hover{background:#ede7da;border-color:#ede7da}
+.ncrt-panel-frosted{border-top:3px solid #e2863a}
+.ncrt-input{font-family:var(--font-sans);font-size:1.0625rem;letter-spacing:0;border-color:rgba(237,231,218,0.6)}
+.ncrt-input:focus{border-color:#ede7da}
+.ncrt-field-label{font-family:var(--font-display);font-weight:600;font-size:.875rem;letter-spacing:.16em;margin:0 0 .5rem}
+.pill{box-sizing:border-box;min-height:3.25rem;padding:0 1.25rem;background:transparent;color:#ede7da;border:1px solid rgba(237,231,218,0.6);border-radius:0;font-family:var(--font-display);font-weight:600;font-size:1rem;letter-spacing:.08em;cursor:pointer;transition:background-color .2s,color .2s,border-color .2s}
+.pill:hover{border-color:#ede7da;background:rgba(237,231,218,0.08)}
+.pill-on,.pill-on:hover{background:#e2863a;border-color:#e2863a;color:#13150f}
+.pill:focus-visible,.linkbtn:focus-visible,.ck:focus-visible,.waiver:focus-visible{outline:2px solid #e2863a;outline-offset:3px}
+.linkbtn{min-height:44px;padding:0;background:none;border:0;color:#e2863a;font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px;cursor:pointer;transition:color .2s}
+.linkbtn:hover{color:#ede7da}
+.ck{appearance:none;-webkit-appearance:none;flex:none;width:2rem;height:2rem;margin:0;background:transparent;border:1px solid #ede7da;border-radius:0;cursor:pointer}
+.ck:checked{background:#e2863a;border-color:#e2863a;box-shadow:inset 0 0 0 .4rem #13150f}
+.group{display:flex;flex-direction:column;gap:1rem}
+.waiver{max-height:32rem;overflow-y:auto;box-sizing:border-box;padding:2rem 2.25rem;background:rgba(19,21,15,0.6);border:1px solid rgba(237,231,218,0.35);display:flex;flex-direction:column;gap:1.25rem}
+.waiver .t-body{font-size:1rem}
+.waiver strong,.policy strong{font-weight:600}
+.policy{display:flex;flex-direction:column;gap:1rem}
+@media (max-width:736px){.wrap{padding-left:1.5rem;padding-right:1.5rem}.t-heading,.ncrt-title-section{font-size:2.25rem}.ncrt-panel-pad{padding:3rem 1.5rem}.waiver{padding:1.5rem}}
+</style>
+</helmet>
+<div class="ncrt-backdrop site-bg" style="min-height: 100vh; color: #ede7da; font-family: Barlow, sans-serif;">
+
+<header class="topbar">
+<div class="wrap" style="padding-top: 1rem; padding-bottom: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 3rem;">
+<a href="Main.dc.html" class="brand">[Organization name]</a>
+<nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 2rem;">
+<a href="Main.dc.html">Courses</a>
+<a href="NCRT.dc.html">NCRT</a>
+<a href="Main.dc.html">Location</a>
+<a href="Register.dc.html" aria-current="page">Register</a>
+</nav>
+</div>
+</header>
+
+<section class="wrap" style="padding-top: 5rem; padding-bottom: 3rem; display: flex; flex-direction: column; gap: 1.5rem;">
+<p class="ncrt-eyebrow">{{ stepLabel }}</p>
+<h1 class="t-heading">Wilderness Survival Fundamentals</h1>
+<p class="t-body" style="max-width: 48rem;">Every Wednesday, 1:00–4:00 PM in Middle Tennessee. We email the exact training location after you register. Students under 18 need a parent or legal guardian listed.</p>
+</section>
+
+<div class="wrap" style="padding-bottom: 6rem;">
+<x-import component-from-global-scope="NCRT.Panel" variant="frosted">
+
+<sc-if value="{{ isDetails }}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{ next }}" noValidate="{{ yes }}" style="display: flex; flex-direction: column; gap: 4rem;">
+
+<fieldset class="group" style="border: 0; margin: 0; padding: 0; min-width: 0;">
+<legend class="t-subhead" style="padding: 0; margin-bottom: 1rem;">Class date</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+<sc-for list="{{ dates }}" as="d" hint-placeholder-count="6">
+<button type="button" class="{{ d.cls }}" aria-pressed="{{ d.pressed }}" onClick="{{ d.pick }}">{{ d.label }}</button>
+</sc-for>
+</div>
+</fieldset>
+
+<div class="group" style="gap: 3rem;">
+<p class="t-subhead">Students attending</p>
+<sc-for list="{{ students }}" as="s" hint-placeholder-count="1">
+<div class="group" style="gap: 1rem;">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+<p class="t-item">Student {{ s.num }}</p>
+<sc-if value="{{ s.canRemove }}" hint-placeholder-val="{{ false }}">
+<button type="button" class="linkbtn" onClick="{{ s.remove }}">Remove</button>
+</sc-if>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+<x-import component-from-global-scope="NCRT.TextField" label="Full name" autoComplete="off" value="{{ s.name }}" on-change="{{ s.setName }}" required="{{ yes }}" style="flex: 3 1 18rem; min-width: 0;"></x-import>
+<x-import component-from-global-scope="NCRT.TextField" label="Age" type="number" min="0" inputMode="numeric" value="{{ s.age }}" on-change="{{ s.setAge }}" required="{{ yes }}" style="flex: 1 1 8rem; min-width: 0;"></x-import>
+</div>
+<sc-if value="{{ s.isMinor }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="NCRT.TextField" label="Parent or legal guardian’s full name" value="{{ s.guardian }}" on-change="{{ s.setGuardian }}" required="{{ yes }}"></x-import>
+</sc-if>
+<div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+<x-import component-from-global-scope="NCRT.TextField" label="Food allergies" placeholder="None" value="{{ s.food }}" on-change="{{ s.setFood }}" style="flex: 1 1 14rem; min-width: 0;"></x-import>
+<x-import component-from-global-scope="NCRT.TextField" label="Medication allergies" placeholder="None" value="{{ s.meds }}" on-change="{{ s.setMeds }}" style="flex: 1 1 14rem; min-width: 0;"></x-import>
+<x-import component-from-global-scope="NCRT.TextField" label="Other allergies" placeholder="None" value="{{ s.other }}" on-change="{{ s.setOther }}" style="flex: 1 1 14rem; min-width: 0;"></x-import>
+</div>
+</div>
+</sc-for>
+<div class="ncrt-btns">
+<x-import component-from-global-scope="NCRT.Button" on-click="{{ addStudent }}">Add another student</x-import>
+</div>
+</div>
+
+<div class="group">
+<p class="t-subhead">Your contact information</p>
+<div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+<x-import component-from-global-scope="NCRT.TextField" label="Phone number" type="tel" autoComplete="tel" value="{{ phone }}" on-change="{{ setPhone }}" required="{{ yes }}" style="flex: 1 1 18rem; min-width: 0;"></x-import>
+<x-import component-from-global-scope="NCRT.TextField" label="Email" type="email" autoComplete="email" value="{{ email }}" on-change="{{ setEmail }}" required="{{ yes }}" style="flex: 1 1 18rem; min-width: 0;"></x-import>
+</div>
+</div>
+
+<div class="group">
+<p class="t-subhead">Emergency contact</p>
+<div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+<x-import component-from-global-scope="NCRT.TextField" label="Emergency contact name" value="{{ emName }}" on-change="{{ setEmName }}" required="{{ yes }}" style="flex: 1 1 18rem; min-width: 0;"></x-import>
+<x-import component-from-global-scope="NCRT.TextField" label="Emergency contact phone" type="tel" value="{{ emPhone }}" on-change="{{ setEmPhone }}" required="{{ yes }}" style="flex: 1 1 18rem; min-width: 0;"></x-import>
+</div>
+</div>
+
+<div style="display: flex; align-items: center; gap: 1.25rem;">
+<input id="reg-list" type="checkbox" class="ck" checked="{{ list }}" onChange="{{ toggleList }}">
+<label for="reg-list" class="t-body t-tight">Add me to the email list for training locations and new courses</label>
+</div>
+
+<sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display: flex; flex-direction: column; gap: 0.25rem;">
+<p class="t-item">Please complete these before continuing:</p>
+<sc-for list="{{ errors }}" as="err" hint-placeholder-count="2">
+<p class="t-body t-tight">{{ err }}</p>
+</sc-for>
+</div>
+</sc-if>
+
+<div class="ncrt-btns">
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" type="submit">Continue to waiver</x-import>
+</div>
+</form>
+</sc-if>
+
+<sc-if value="{{ isWaiver }}" hint-placeholder-val="{{ false }}">
+<form onSubmit="{{ toReview }}" noValidate="{{ yes }}" style="display: flex; flex-direction: column; gap: 3rem;">
+<div style="display: flex; flex-direction: column; gap: 1.5rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Required for every participant" title="Release of liability" size="section"></x-import>
+<p class="t-body t-tight">Read the full release below. Adults sign for themselves. A parent or legal guardian signs for each student under 18.</p>
+</div>
+
+<div class="waiver" tabindex="0" role="region" aria-label="Release of liability, assumption of risk and medical authorization">
+<p class="t-item">Release of Liability, Assumption of Risk, and Medical Authorization</p>
+<p class="t-body t-tight">Wilderness Survival Fundamentals · [Organization name] and No Compromise Response Team. Read carefully: this document affects your legal rights.</p>
+<p class="t-body t-tight"><strong>1. The activity.</strong> Wilderness Survival Fundamentals is a hands-on outdoor field course held at an undeveloped site in Middle Tennessee. Activities include hiking and working on uneven, wet or steep ground; locating, collecting and purifying water; building, maintaining and putting out fires; using knives, saws, hatchets, ferro rods and other cutting and fire-starting tools; gathering natural materials; and constructing shelters (the “Activities”).</p>
+<p class="t-body t-tight"><strong>2. Risks.</strong> I understand the Activities carry inherent risks that cannot be removed without changing the nature of the course. These include burns and smoke inhalation; cuts and punctures from tools; slips, trips and falls; sprains, fractures and head injuries; falling trees and limbs; bites and stings from insects, ticks, spiders and snakes, and the illnesses they carry; contact with poison ivy and other harmful plants; allergic reactions; illness from untreated or improperly treated water; heat illness, dehydration, hypothermia and frostbite; lightning, storms and flooding; becoming lost or separated; delayed emergency response because of the remote location; equipment failure; and the actions of other participants. These risks can cause serious injury, illness, permanent disability or death. I knowingly and voluntarily assume all of these risks, known and unknown.</p>
+<p class="t-body t-tight"><strong>3. My responsibilities.</strong> I agree to follow the instructors’ directions and safety rules; to use tools only as instructed; to wear clothing and footwear suited to the weather and terrain; to bring any medication I need, including epinephrine auto-injectors and inhalers; and to tell an instructor about any medical condition, allergy or limitation that could affect safety. An instructor may remove a participant who acts unsafely, without refund.</p>
+<p class="t-body t-tight"><strong>4. Medical authorization.</strong> I authorize the instructors to give first aid and to arrange emergency medical care and transport for the participant if they judge it necessary. I am responsible for the cost of that care. Instructors are not required to provide medical care, and their first aid does not replace professional care.</p>
+<p class="t-body t-tight"><strong>5. Release.</strong> In exchange for being allowed to take part, I release, waive and discharge [Organization name], No Compromise Response Team, their owners, instructors, employees, volunteers and agents, and the owners of any property where training takes place (the “Released Parties”) from all claims, demands and causes of action for injury, illness, death or property loss arising out of or related to the Activities, INCLUDING CLAIMS ARISING FROM THE ORDINARY NEGLIGENCE OF THE RELEASED PARTIES. This release does not cover gross negligence, recklessness or intentional misconduct.</p>
+<p class="t-body t-tight"><strong>6. Indemnity.</strong> I agree to indemnify and hold harmless the Released Parties from any claim brought by me or on my behalf arising from the participant’s involvement in the Activities, including reasonable attorneys’ fees, except to the extent caused by their gross negligence, recklessness or intentional misconduct.</p>
+<p class="t-body t-tight"><strong>7. Participants under 18.</strong> If I sign as the parent or legal guardian of a participant under 18, I confirm that I am that participant’s parent or legal guardian; I give permission for the participant to take part; I have read this document and explained its risks to the participant; I assume these risks on the participant’s behalf; and I agree, to the fullest extent the law allows, to the release and indemnity above for myself and for the participant.</p>
+<p class="t-body t-tight"><strong>8. General.</strong> This agreement is governed by the laws of the State of Tennessee. If any part is found unenforceable, the rest remains in effect. It applies to every session of Wilderness Survival Fundamentals the participant attends and is the entire agreement on these subjects.</p>
+<p class="t-body t-tight"><strong>9. Electronic signature.</strong> By typing my full name below, I agree that it is my electronic signature and has the same effect as a handwritten signature, and I confirm that I am 18 or older, that I have read and understand this document, and that I sign it freely.</p>
+</div>
+
+<div class="group" style="gap: 2rem;">
+<p class="t-subhead">Signatures · {{ today }}</p>
+<sc-for list="{{ signers }}" as="g" hint-placeholder-count="1">
+<x-import component-from-global-scope="NCRT.TextField" label="{{ g.label }}" placeholder="Type full name" autoComplete="off" value="{{ g.value }}" on-change="{{ g.set }}" required="{{ yes }}" style="max-width: 36rem;"></x-import>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 1.5rem;">
+<div style="display: flex; align-items: center; gap: 1.25rem;">
+<input id="waiver-agree" type="checkbox" class="ck" checked="{{ agree }}" onChange="{{ toggleAgree }}">
+<label for="waiver-agree" class="t-body t-tight">I have read this release, I understand that I am giving up legal rights, and I agree to its terms.</label>
+</div>
+<div style="display: flex; align-items: center; gap: 1.25rem;">
+<input id="waiver-photo" type="checkbox" class="ck" checked="{{ photo }}" onChange="{{ togglePhoto }}">
+<label for="waiver-photo" class="t-body t-tight">Optional: [Organization name] and NCRT may use photos and video of the participants taken during class in their marketing, without payment.</label>
+</div>
+</div>
+
+<sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display: flex; flex-direction: column; gap: 0.25rem;">
+<p class="t-item">Please complete these before continuing:</p>
+<sc-for list="{{ errors }}" as="err" hint-placeholder-count="2">
+<p class="t-body t-tight">{{ err }}</p>
+</sc-for>
+</div>
+</sc-if>
+
+<div class="ncrt-btns">
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" type="submit">Sign and continue</x-import>
+<button type="button" class="linkbtn" onClick="{{ back }}" style="margin-left: 1.5rem;">Edit details</button>
+</div>
+</form>
+</sc-if>
+
+<sc-if value="{{ isReview }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 3rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Review" title="Your registration" size="section"></x-import>
+<div class="group" style="gap: 0.25rem;">
+<p class="ncrt-eyebrow">Class date</p>
+<p class="t-item">{{ date }}, 1:00–4:00 PM</p>
+</div>
+<div class="group" style="gap: 1.5rem;">
+<p class="ncrt-eyebrow">Students</p>
+<sc-for list="{{ students }}" as="s" hint-placeholder-count="1">
+<div>
+<p class="t-item">{{ s.name }} · {{ s.ageText }}</p>
+<sc-if value="{{ s.isMinor }}" hint-placeholder-val="{{ false }}">
+<p class="t-body t-tight">Parent or legal guardian: {{ s.guardian }}</p>
+</sc-if>
+<p class="t-body t-tight">Allergies: {{ s.allergyText }}</p>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 1.5rem 5rem;">
+<div>
+<p class="ncrt-eyebrow">Contact</p>
+<p class="t-body t-tight">{{ phone }}</p>
+<p class="t-body t-tight">{{ email }}</p>
+</div>
+<div>
+<p class="ncrt-eyebrow">Emergency contact</p>
+<p class="t-body t-tight">{{ emName }}</p>
+<p class="t-body t-tight">{{ emPhone }}</p>
+</div>
+</div>
+<div class="group" style="gap: 0.25rem;">
+<p class="ncrt-eyebrow">Release of liability</p>
+<p class="t-body t-tight">Signed {{ today }} by {{ signerNames }}</p>
+<p class="t-body t-tight">Photo and video release: {{ photoText }}</p>
+</div>
+
+<div class="group" style="gap: 2rem;">
+<div class="policy">
+<p class="t-subhead">Refunds and rescheduling</p>
+<p class="t-body t-tight"><strong>Change dates for free.</strong> Move to any other Wednesday with at least 48 hours’ notice.</p>
+<p class="t-body t-tight"><strong>Cancel 7 or more days before class:</strong> full refund.</p>
+<p class="t-body t-tight"><strong>Cancel less than 7 days before class:</strong> no cash refund, but you get a credit for a future Wednesday class, good for 12 months.</p>
+<p class="t-body t-tight"><strong>No-shows</strong> without notice receive no refund or credit.</p>
+<p class="t-body t-tight"><strong>If we cancel</strong> for any reason, you choose a full refund or a free move to another Wednesday.</p>
+<p class="t-body t-tight">To cancel or reschedule, call or text <a href="tel:">[Phone number]</a> or email <a href="mailto:">[Email address]</a>.</p>
+</div>
+<div class="policy">
+<p class="t-subhead">Weather</p>
+<p class="t-body t-tight"><strong>Class runs rain or shine.</strong> Learning to stay warm, dry and safe in bad conditions is part of the course, so dress for the forecast.</p>
+<p class="t-body t-tight"><strong>We cancel</strong> for thunderstorms or lightning, any National Weather Service warning for the training area (severe thunderstorm, tornado, flood, winter storm, extreme heat or extreme cold), ice on the roads, or hazards at the site such as flooding or downed trees.</p>
+<p class="t-body t-tight"><strong>We decide by 10:00 AM on class day</strong> and text and email every registered student.</p>
+<p class="t-body t-tight"><strong>If thunder is heard during class,</strong> we stop and take shelter until 30 minutes after the last thunder. If we have to end class early for safety, you may attend another Wednesday at no charge.</p>
+<p class="t-body t-tight"><strong>Weather cancellations:</strong> choose a full refund or a free move to another Wednesday.</p>
+</div>
+<div style="display: flex; align-items: center; gap: 1.25rem;">
+<input id="policy-agree" type="checkbox" class="ck" checked="{{ policyAgree }}" onChange="{{ togglePolicy }}">
+<label for="policy-agree" class="t-body t-tight">I have read and agree to the refund, rescheduling and weather policies.</label>
+</div>
+</div>
+
+<div class="group" style="gap: 0.25rem;">
+<p class="ncrt-eyebrow">Payment</p>
+<p class="t-body t-tight">{{ studentCount }} × {{ priceLabel }} per student</p>
+<p class="t-heading">Total {{ totalLabel }}</p>
+</div>
+<sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display: flex; flex-direction: column; gap: 0.25rem;">
+<sc-for list="{{ errors }}" as="err" hint-placeholder-count="1">
+<p class="t-item">{{ err }}</p>
+</sc-for>
+</div>
+</sc-if>
+<div class="ncrt-btns">
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" on-click="{{ pay }}">Continue to secure checkout</x-import>
+<button type="button" class="linkbtn" onClick="{{ backToWaiver }}" style="margin-left: 1.5rem;">Back to waiver</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+<div role="status" style="display: flex; flex-direction: column; gap: 2rem; max-width: 46rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Registration complete" title="See you Wednesday" size="section"></x-import>
+<p class="t-body">You’re registered for {{ date }}, 1:00–4:00 PM. We’ll email the training location to {{ email }} before class.</p>
+<p class="t-body">Questions before then? Call or text <a href="tel:">[Phone number]</a> or email <a href="mailto:">[Email address]</a>.</p>
+<div class="ncrt-btns">
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" href="Main.dc.html">Back to home</x-import>
+</div>
+</div>
+</sc-if>
+
+</x-import>
+</div>
+
+<footer class="topbar" style="border-bottom: 0; border-top: 1px solid rgba(237, 231, 218, 0.18);">
+<div class="wrap" style="padding-top: 2rem; padding-bottom: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 3rem;">
+<p class="ncrt-eyebrow" style="margin: 0; color: #ede7da;">© 2026 [Organization name] · Middle Tennessee</p>
+<nav class="nav" aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 0 2rem;">
+<a href="Main.dc.html">Home</a>
+<a href="NCRT.dc.html">NCRT</a>
+</nav>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"price":{"editor":"int","default":0,"min":0,"step":5,"unit":"$","section":"Pricing"},"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.nextId = 2;
+    var first = this.upcoming()[0];
+    this.state = {
+      step: 'details',
+      date: first,
+      students: [this.blank(1)],
+      phone: '',
+      email: '',
+      emName: '',
+      emPhone: '',
+      list: true,
+      sigs: {},
+      agree: false,
+      photo: false,
+      policyAgree: false,
+      errors: []
+    };
+  }
+
+  norm(v) {
+    return String(v || '').trim().replace(/\s+/g, ' ').toLowerCase();
+  }
+
+  signerFor(s, i) {
+    var minor = this.isMinor(s);
+    var who = s.name.trim() || 'Student ' + (i + 1);
+    return {
+      id: s.id,
+      expected: minor ? s.guardian : s.name,
+      label: minor ? 'Parent or legal guardian of ' + who + ': type ' + (s.guardian.trim() || 'your') + ' full name' : who + ': type your full name',
+      role: minor ? 'parent or legal guardian name' : 'student name'
+    };
+  }
+
+  validateWaiver() {
+    var self = this;
+    var st = this.state;
+    var errs = [];
+    st.students.forEach(function (s, i) {
+      var g = self.signerFor(s, i);
+      var typed = st.sigs[s.id] || '';
+      if (!typed.trim()) errs.push('Student ' + (i + 1) + ': signature');
+      else if (self.norm(typed) !== self.norm(g.expected)) errs.push('Student ' + (i + 1) + ': signature must match the ' + g.role + ' (' + g.expected.trim() + ')');
+    });
+    if (!st.agree) errs.push('Agree to the release of liability');
+    return errs;
+  }
+
+  blank(id) {
+    return { id: id, name: '', age: '', guardian: '', food: '', meds: '', other: '' };
+  }
+
+  upcoming() {
+    var out = [];
+    var d = new Date();
+    d.setHours(0, 0, 0, 0);
+    d.setDate(d.getDate() + ((3 - d.getDay() + 7) % 7));
+    for (var i = 0; i < 6; i++) {
+      var x = new Date(d);
+      x.setDate(d.getDate() + i * 7);
+      out.push(x.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }));
+    }
+    return out;
+  }
+
+  isMinor(s) {
+    return s.age !== '' && !isNaN(Number(s.age)) && Number(s.age) < 18;
+  }
+
+  upd(id, key, value) {
+    this.setState(function (st) {
+      return {
+        students: st.students.map(function (s) {
+          if (s.id !== id) return s;
+          var c = Object.assign({}, s);
+          c[key] = value;
+          return c;
+        })
+      };
+    });
+  }
+
+  validate() {
+    var st = this.state;
+    var self = this;
+    var errs = [];
+    if (!st.date) errs.push('Class date');
+    st.students.forEach(function (s, i) {
+      var n = 'Student ' + (i + 1);
+      if (!s.name.trim()) errs.push(n + ': full name');
+      if (s.age === '' || isNaN(Number(s.age))) errs.push(n + ': age');
+      if (self.isMinor(s) && !s.guardian.trim()) errs.push(n + ': parent or legal guardian');
+    });
+    if (!st.phone.trim()) errs.push('Phone number');
+    if (st.email.indexOf('@') < 1) errs.push('Email');
+    if (!st.emName.trim()) errs.push('Emergency contact name');
+    if (!st.emPhone.trim()) errs.push('Emergency contact phone');
+    return errs;
+  }
+
+  toTop() {
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+
+  renderVals() {
+    var self = this;
+    var st = this.state;
+    var price = Number(this.props.price ?? 0) || 0;
+    var n = st.students.length;
+    var setter = function (k) {
+      return function (e) { var o = {}; o[k] = e.target.value; self.setState(o); };
+    };
+    var studentSetter = function (id, k) {
+      return function (e) { self.upd(id, k, e.target.value); };
+    };
+
+    var dates = this.upcoming().map(function (label) {
+      var on = label === st.date;
+      return {
+        label: label,
+        cls: on ? 'pill pill-on' : 'pill',
+        pressed: on ? 'true' : 'false',
+        pick: function () { self.setState({ date: label }); }
+      };
+    });
+
+    var students = st.students.map(function (s, i) {
+      var allergies = [];
+      if (s.food.trim()) allergies.push('Food: ' + s.food.trim());
+      if (s.meds.trim()) allergies.push('Medications: ' + s.meds.trim());
+      if (s.other.trim()) allergies.push('Other: ' + s.other.trim());
+      return Object.assign({}, s, {
+        num: i + 1,
+        isMinor: self.isMinor(s),
+        canRemove: n > 1,
+        ageText: s.age === '' ? '' : 'Age ' + s.age,
+        allergyText: allergies.length ? allergies.join(' · ') : 'None listed',
+        setName: studentSetter(s.id, 'name'),
+        setAge: studentSetter(s.id, 'age'),
+        setGuardian: studentSetter(s.id, 'guardian'),
+        setFood: studentSetter(s.id, 'food'),
+        setMeds: studentSetter(s.id, 'meds'),
+        setOther: studentSetter(s.id, 'other'),
+        remove: function () {
+          self.setState(function (x) {
+            return { students: x.students.filter(function (y) { return y.id !== s.id; }) };
+          });
+        }
+      });
+    });
+
+    var stepLabels = {
+      details: 'Register · Step 1 of 3 · Your details',
+      waiver: 'Register · Step 2 of 3 · Release of liability',
+      review: 'Register · Step 3 of 3 · Review and pay',
+      done: 'Register · Complete'
+    };
+
+    var signers = st.students.map(function (s, i) {
+      var g = self.signerFor(s, i);
+      return {
+        label: g.label,
+        value: st.sigs[s.id] || '',
+        set: function (e) {
+          var v = e.target.value;
+          self.setState(function (x) { var o = Object.assign({}, x.sigs); o[s.id] = v; return { sigs: o }; });
+        }
+      };
+    });
+    var signerNames = [];
+    st.students.forEach(function (s) {
+      var v = (st.sigs[s.id] || '').trim();
+      if (v && signerNames.indexOf(v) < 0) signerNames.push(v);
+    });
+
+    return {
+      yes: true,
+      stepLabel: stepLabels[st.step],
+      today: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+      signers: signers,
+      signerNames: signerNames.join(', '),
+      agree: st.agree,
+      photo: st.photo,
+      photoText: st.photo ? 'granted' : 'not granted',
+      policyAgree: st.policyAgree,
+      toggleAgree: function (e) { self.setState({ agree: e.target.checked }); },
+      togglePhoto: function (e) { self.setState({ photo: e.target.checked }); },
+      togglePolicy: function (e) { self.setState({ policyAgree: e.target.checked }); },
+      isDetails: st.step === 'details',
+      isWaiver: st.step === 'waiver',
+      isReview: st.step === 'review',
+      isDone: st.step === 'done',
+      dates: dates,
+      date: st.date,
+      students: students,
+      studentCount: n === 1 ? '1 student' : n + ' students',
+      phone: st.phone,
+      email: st.email,
+      emName: st.emName,
+      emPhone: st.emPhone,
+      list: st.list,
+      errors: st.errors,
+      hasErrors: st.errors.length > 0,
+      priceLabel: price > 0 ? '$' + price : '[Price]',
+      totalLabel: price > 0 ? '$' + price * n : '[Price × ' + n + ']',
+      setPhone: setter('phone'),
+      setEmail: setter('email'),
+      setEmName: setter('emName'),
+      setEmPhone: setter('emPhone'),
+      toggleList: function (e) { self.setState({ list: e.target.checked }); },
+      addStudent: function () {
+        var id = self.nextId++;
+        self.setState(function (x) { return { students: x.students.concat([self.blank(id)]) }; });
+      },
+      next: function (e) {
+        if (e && e.preventDefault) e.preventDefault();
+        var errs = self.validate();
+        if (errs.length) { self.setState({ errors: errs }); return; }
+        self.setState({ errors: [], step: 'waiver' });
+        self.toTop();
+      },
+      toReview: function (e) {
+        if (e && e.preventDefault) e.preventDefault();
+        var errs = self.validateWaiver();
+        if (errs.length) { self.setState({ errors: errs }); return; }
+        self.setState({ errors: [], step: 'review' });
+        self.toTop();
+      },
+      back: function () { self.setState({ step: 'details', errors: [] }); self.toTop(); },
+      backToWaiver: function () { self.setState({ step: 'waiver', errors: [] }); self.toTop(); },
+      pay: function () {
+        if (!self.state.policyAgree) { self.setState({ errors: ['Agree to the refund, rescheduling and weather policies to continue.'] }); return; }
+        self.setState({ step: 'done', errors: [] });
+        self.toTop();
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

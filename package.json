@@ -1,0 +1,25 @@
+{
+  "name": "training-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "legal": "node scripts/build-legal.mjs",
+    "dev": "npm run legal && astro dev",
+    "build": "npm run legal && astro check && astro build",
+    "preview": "npm run build && wrangler pages dev dist",
+    "db:migrate:local": "wrangler d1 migrations apply training-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply training-db --remote",
+    "test": "node --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/preact": "^6.0.6",
+    "astro": "^7.3.6",
+    "preact": "^10.29.8",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261006.1",
+    "wrangler": "^4.148.0"
+  }
+}

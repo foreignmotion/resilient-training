@@ -1,0 +1,8 @@
+---
+interface Props { label: string; style?: string }
+const { label, style } = Astro.props;
+---
+<div class="fact" style={style}>
+  <p class="eyebrow">{label}</p>
+  <p class="t-item"><slot /></p>
+</div>

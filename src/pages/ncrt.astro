@@ -1,0 +1,228 @@
+---
+import { Picture } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import CourseItem from '../components/CourseItem.astro';
+import Fact from '../components/Fact.astro';
+import TextField from '../components/TextField.astro';
+import riverRopes from '../assets/images/image03_river-ropes-dusk.jpg';
+import litterOverlook from '../assets/images/image06_litter-rigging-overlook.jpg';
+import mossyCrevice from '../assets/images/image01_rappel-mossy-crevice.jpg';
+import nightCasualty from '../assets/images/image05_night-casualty-scenario.jpg';
+import edgeTransfer from '../assets/images/image07_litter-edge-transfer.jpg';
+import nightWall from '../assets/images/image02_night-wall-rappel.jpg';
+import founder from '../assets/images/image04_founder-tripod-litter-raise.jpg';
+
+const photoProps = { formats: ['avif', 'webp'] as ('avif' | 'webp')[], widths: [420, 640, 840], sizes: '(max-width: 736px) 100vw, 26rem', loading: 'lazy' as const, class: 'photo' };
+const multiDayNote = '(Multi-day courses often end with realistic scenarios and nighttime training. All multi-day courses involve camping in a wilderness setting, and have a significantly more extensive pack list than single day courses.)';
+const videoId = 'SbS8AjeXPLM';
+---
+<Layout
+  title="No Compromise Response Team: rescue and survival courses"
+  description="NCRT trains ordinary people in wilderness medicine, rope rescue, patient movement and survival across the Midwest and Southeast. See one-day and multi-day courses."
+  current="ncrt"
+  ogImage="/share_ncrt-wordmark.jpg"
+  footerLinks={[{ href: '/', label: 'Home' }, { href: '/register/', label: 'Register' }]}
+>
+  <section class="wrap hero">
+    <div class="stack-lg reveal" style="max-width: 56rem;">
+      <p class="t-subhead">Rescue trainings across the Midwest and Southeast</p>
+      <h1 class="t-display">No Compromise Response team</h1>
+      <p class="t-body t-lede" style="max-width: 44rem;">Together, we’re building a network of capable individuals, ready to help anyone in need. You don’t have to do it alone. Join us—and become someone others can depend on when it matters most.</p>
+      <div class="btns" style="padding-top: 1rem;">
+        <Button variant="solid" href="#contact">Take a course</Button>
+        <Button href="#prepared" icon="arrow-down">Learn More</Button>
+      </div>
+    </div>
+  </section>
+
+  <section id="prepared" class="panel panel-frosted sec card anchor" aria-labelledby="prepared-title">
+    <div class="stack" style="width: 100%; max-width: 48rem; gap: 2rem;">
+      <header class="section-header">
+        <p class="eyebrow">Watch the video</p>
+        <h2 id="prepared-title" class="title title-section">Are you prepared?</h2>
+      </header>
+      <div class="video" data-video={videoId}>
+        <a class="video-facade" href={`https://www.youtube.com/watch?v=${videoId}`} aria-label="Play the NCRT video">
+          <span>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"></path></svg>
+            Play video
+          </span>
+        </a>
+      </div>
+      <div class="stack" style="gap: 1rem;">
+        <p class="t-body t-tight">Have you ever wondered what you would do if you got injured in the backcountry?<br />What about coming across a car wreck before emergency responders arrived?</p>
+        <p class="t-body t-tight">Have you considered whether you have the skills and tools to be a valuable asset when the unthinkable happens—whether it’s a crisis in the wilderness, a disaster in your community, or even a conflict close to home?</p>
+        <p class="t-body t-tight">Imagine finding yourself far from cell service, deep in the wilderness, when someone in your group becomes ill or injured, unable to continue without assistance. Or perhaps you’ve dreamed of venturing further than ever before—exploring remote regions, undertaking mission work, or leading expeditions into uncharted territories.</p>
+        <p class="t-body t-tight">But what if our trusted systems falter? What if local emergency services become overwhelmed, or government aid fails to materialize during a natural disaster, as millions of Americans have experienced in recent years?</p>
+      </div>
+      <h3 class="t-subhead">The Need for Readiness</h3>
+      <div class="stack" style="gap: 1rem;">
+        <p class="t-body t-tight">These questions aren't just hypothetical; they are the reality many face. I’ve spent years learning, training, and honing skills to be prepared for these situations. More than that, I’ve dedicated myself to teaching others how to be ready when it matters most.</p>
+        <p class="t-body t-tight">As the saying goes: “Hard times create strong men; strong men create good times; good times create weak men; and weak men create hard times.” Right now, we’re in the latter stages of that cycle. It’s time to reverse the trend.</p>
+      </div>
+      <h3 class="t-subhead">Join the No Compromise Response Team</h3>
+      <div class="stack" style="gap: 1rem;">
+        <p class="t-body t-tight">What are you doing to ensure you’re part of the solution, not another helpless individual relying on limited resources? My passion is equipping people like you with the tools, knowledge, and confidence to make a difference when the unexpected happens.</p>
+        <p class="t-body t-tight">Whether it’s saving a life in the wilderness, responding to emergencies in your community, or preparing for challenges we all hope never come, training with us will empower you to rise to the occasion.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel-frosted sec card" aria-labelledby="one-day">
+    <div class="tier">
+      <div class="tier-photos">
+        <Picture src={riverRopes} alt="Two people on ropes under a bridge at dusk, headlamps on" {...photoProps} />
+      </div>
+      <div class="stack" style="flex: 1 1 21rem; gap: 2rem;">
+        <header class="section-header">
+          <p class="eyebrow">Course Examples</p>
+          <h2 id="one-day" class="title title-tier">1 Day Trainings</h2>
+        </header>
+        <div class="list">
+          <CourseItem name="Wilderness Medical Response">Expect to grasp the fundamentals of medical assessment and treatment, and patient movement with makeshift litters.</CourseItem>
+          <CourseItem name="Intro to Ropes">In this course you’ll learn some of the most useful knots and climb and rappel techniques, as well as valuable knowledge on types of ropes and rope equipment and their various uses.</CourseItem>
+          <CourseItem name="Patient Movement">This course covers a variety of ways to move an injured person to a transport vehicle in varying terrain over any distance.</CourseItem>
+          <CourseItem name="Inclement Weather Survival">During this training day, you will be taught imperative skills for surviving the less-than-ideal weather conditions often encountered in the wilderness, or in emergency situations such as your car running off the road or breaking down in an area outside of cell coverage.</CourseItem>
+          <CourseItem name="Intro to Wilderness Survival">We’ll teach you about the first three priorities when you are lost or intentionally overnighting in the wilderness: water, shelter, fire. And we’ll touch on a variety of useful skills and knowledge for making life outdoors a safer and more enjoyable experience. You can thrive on less than you might’ve realized when you master the necessary knowledge and skills.</CourseItem>
+        </div>
+        <div class="btns" style="padding: 1rem 0;"><Button href="#contact" icon="arrow-down">Take a Course</Button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel-frosted sec card" aria-labelledby="two-day">
+    <div class="tier">
+      <div class="tier-photos">
+        <Picture src={litterOverlook} alt="Packaging a casualty in a litter beside a tripod at a cliff overlook" {...photoProps} />
+        <Picture src={mossyCrevice} alt="Looking down a mossy rock crevice at a rescuer on rope" {...photoProps} />
+      </div>
+      <div class="stack" style="flex: 1 1 21rem; gap: 2rem;">
+        <header class="section-header">
+          <p class="eyebrow">Course Examples</p>
+          <h2 id="two-day" class="title title-tier">2 Day Trainings</h2>
+        </header>
+        <p class="t-small">{multiDayNote}</p>
+        <div class="list">
+          <CourseItem name="Wilderness Medical Response">Here you’ll be taught how to evaluate an accident/injury scene for safety, mitigate further injuries, assess the injured person’s condition, and treat injuries to stabilize the casualty for transport or hand-off to a higher level of care.</CourseItem>
+          <CourseItem name="Intro To Ropes 2">Delve deeper into rope skills than single-day rope courses. Participants can tie several important knots, climb, rappel, and perform changeovers on ropes within a couple of days.</CourseItem>
+          <CourseItem name="Patient Movement 2">Come ready to gain useful skills in manual patient movement, even in adverse conditions including rocky, steep, or vertical terrain. Expect to get your hands dirty and your muscles sore as you put these skills into practice.</CourseItem>
+          <CourseItem name="Inclement Weather Survival 2">Increase your ability to thrive in nature without many of the modern conveniences most of us are accustomed to in daily life. Even when the weather turns for the worse, learn to live by the reality that “There’s no such thing as bad weather, just bad gear” (and a lack of knowledge).</CourseItem>
+          <CourseItem name="Wilderness Survival and Bushcraft">Spend two days learning how to navigate the trials the wilderness brings. Gain the ability to stay overnight in the backcountry with minimal equipment, whether you’re intentionally out hiking, or lost in the wild. We’ll practice such skills as finding and purifying water, creating shelter from the elements, and making fires, even in wet environments.</CourseItem>
+        </div>
+        <div class="btns" style="padding: 1rem 0;"><Button href="#contact" icon="arrow-down">Take a Course</Button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel-frosted sec card" aria-labelledby="multi-day">
+    <div class="tier">
+      <div class="tier-photos">
+        <Picture src={nightCasualty} alt="Night scenario: a simulated leg wound lit by a headlamp" {...photoProps} />
+        <Picture src={edgeTransfer} alt="Moving a loaded litter over a cliff edge on a tripod system" {...photoProps} />
+        <Picture src={nightWall} alt="Rescuers working a rock wall on rope at night" {...photoProps} />
+      </div>
+      <div class="stack" style="flex: 1 1 21rem; gap: 2rem;">
+        <header class="section-header">
+          <p class="eyebrow">Course Examples</p>
+          <h2 id="multi-day" class="title title-tier">3-4 Day trainings</h2>
+        </header>
+        <p class="t-small">{multiDayNote}</p>
+        <div class="list">
+          <CourseItem name="Wilderness Medical Response">We’ll go into detail about how to evaluate an injury scene to determine proper action, and what to look for when assessing your patient for injuries. We’ll talk about basic anatomy and physiology, and how to stabilize injuries until a casualty can be handed off to higher care. We’ll discuss continual patient assessment during an extended wait or casualty evacuation, and you’ll learn what medical equipment to carry in your kit and how to use it. This course will include lots of outdoor action, not just classroom style lecturing.</CourseItem>
+          <CourseItem name="Intro to Ropes 3">Multiple days playing with ropes and you’ll start feeling quite comfortable in the rope world. This course is designed to get you comfortable with selecting the appropriate ropes and vertical gear for your situation, caring for them, and using them. Most students will be comfortable climbing, rappelling, and performing changeovers and basic rope maneuvers before the end of this course.</CourseItem>
+          <CourseItem name="Intro to Ropes Rescue">In this course, you’ll be given the tools necessary to perform basic patient treatment and movement in a horizontal or vertical situation requiring the assistance of ropes. That begins with basic medical and rope knowledge. Even if you’ve never been on rope, or learned how to assess a patient, you’ll learn those skills from the ground up (literally).</CourseItem>
+          <CourseItem name="Patient Movement 3">This multi-day training event will cover many options for moving and hauling an injured person in vertical and horizontal applications. It will include hands-on learning and realistic training scenarios. To attend this course, you need to be level 2 or higher, or have passed a level 1 rope skills test on a previous training event with NCRT.</CourseItem>
+          <CourseItem name="In-Depth Inclement Weather Survival">Learn skills for surviving the forces of nature and experience multiple days in the wilderness, putting these skills into practice. Our goal is for you to come away from this course with the know-how to thrive outdoors, no matter the weather. You’ll learn how to prepare for, and stay safe while venturing beyond civilization, without being limited to sunny day vacations.</CourseItem>
+          <CourseItem name="Wilderness Survival and Bushcraft">This is currently our most in-depth survival course, covering basic survival skills relating to such priority topics as water, shelter, fire, food. We will focus on both preparedness before venturing into the wilderness, and what to do if you find yourself in an emergency situation with limited gear. Our time will be spent in the wilderness, learning and practicing these important skills.</CourseItem>
+          <CourseItem name="Rope Rescue Intensive Scenario Course">Once you’ve been to some training courses and can demonstrate the relevant skills, you’ll have the opportunity to attend intensive, scenario-based training events to put your learning into practice all weekend with realistic scenarios.</CourseItem>
+        </div>
+        <div class="btns" style="padding: 1rem 0;"><Button href="#contact" icon="arrow-down">Take a course</Button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap cols" style="padding-top: 3rem; padding-bottom: 5rem; gap: 5rem; align-items: center;" aria-labelledby="founder">
+    <div class="stack" style="flex: 1 1 26rem; gap: 2rem;">
+      <header class="section-header" style="gap: 0.5rem;">
+        <p class="eyebrow">Founder and Head of Operations</p>
+        <h2 id="founder" class="title title-section">Jether English</h2>
+      </header>
+      <p class="t-body">Living most of my life outdoors, I've developed a deep passion for wilderness survival, exploration, and rescue work. My journey in the rescue world began at the age of 19 as a volunteer firefighter. Over the years, my interest in rescue work evolved into a lifestyle.</p>
+      <p class="t-body">My focus spans medical and rope rescue, land navigation, wilderness survival skills, and more. Currently, I conduct rescue and wilderness survival training courses across the US, with hands-on learning, enhancing content and quality with each session.</p>
+      <p class="t-body">While my firsthand rescue experience is limited mostly to car wrecks and medical calls with the fire department, I've trained alongside seasoned professionals, including Special Forces and Spec Ops soldiers, mastering high-level tactical medicine. My certifications include GA State Firefighter, BLS/CPR, TECC and TCCC, with plans to pursue Firefighter 1&amp;2, WFR, and EMT/Wilderness EMT in 2025.</p>
+    </div>
+    <Picture src={founder} alt="Jether English raising a litter on a tripod above a valley" formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 30rem" loading="lazy" class="founder-photo" style="flex: 1 1 26rem;" />
+  </section>
+
+  <section id="contact" class="wrap cols anchor" style="padding-top: 3rem; padding-bottom: 5rem; gap: 5rem; align-items: flex-start;">
+    <div class="stack" style="flex: 1 1 26rem; gap: 2rem;" data-form-root>
+      <h2 class="title title-section">Get In Touch</h2>
+      <p class="t-body t-tight">Fill out this form if you are interested in taking a course. You aren't committing to anything - just expressing interest.</p>
+      <form class="form" action="/api/ncrt-interest" method="post" data-ajax novalidate>
+        <TextField name="firstName" placeholder="First Name" aria-label="First Name" autocomplete="given-name" required />
+        <TextField name="lastName" placeholder="Last Name" aria-label="Last Name" autocomplete="family-name" required />
+        <TextField type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" required />
+        <TextField multiline name="message" placeholder="Which course(s) are you interested in?" aria-label="Which course(s) are you interested in?" required maxlength="4000" />
+        <div class="honeypot" aria-hidden="true"><label>Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+        <p class="t-body t-tight form-error" role="alert" data-error hidden></p>
+        <div class="btns" style="padding-top: 1rem;"><Button variant="solid" type="submit">Send</Button></div>
+      </form>
+      <p class="t-item status" role="status" data-success hidden>Thank you. Your message has been sent.</p>
+    </div>
+    <div class="stack" style="flex: 1 1 26rem; gap: 2rem;">
+      <h2 class="title title-section">Fees and Process</h2>
+      <div class="facts" style="gap: 1.25rem 2rem;">
+        <Fact label="Level 1" style="flex: 1 1 10rem;">$75 per day</Fact>
+        <Fact label="Level 2" style="flex: 1 1 10rem;">$50 per day</Fact>
+        <Fact label="Level 3" style="flex: 1 1 10rem;">Free, assisting</Fact>
+        <Fact label="Vertical gear rental" style="flex: 1 1 10rem;">$50, then $25 per day</Fact>
+      </div>
+      <p class="t-body t-tight">I charge $75 per day for level 1 students, $50 per day for level 2 students, and attendance is free for level 3 students, who assist as needed. Level 1 is entry level. To reach level 2, passing a skills test is required. The level 3 test is more extensive with increased physical fitness requirements. Vertical gear rental is available for some courses involving ropes. The cost for gear rental is $50 for the first day, and $25 per day for subsequent days on a training course.</p>
+      <p class="t-body t-tight">If you decide you want to continue training with us long term, you’ll have the opportunity to advance, and with that advancement you’ll pay less in tuition, and also gain more responsibility in leadership.</p>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  .sec { padding: 5rem; }
+  .card { width: calc(100% - 10rem); max-width: 72rem; margin: 0 auto 4rem; display: flex; justify-content: center; }
+  .tier { width: 100%; max-width: 62rem; display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; }
+  .tier > * { min-width: 0; }
+  .tier-photos { flex: 1 1 21rem; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+  .photo { display: block; width: 100%; max-width: 26rem; }
+  .photo img { display: block; width: 100%; height: 32rem; object-fit: cover; }
+  .founder-photo { display: block; min-width: 0; }
+  .founder-photo img { display: block; width: 100%; height: 32rem; object-fit: cover; }
+  .video { position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 0.5rem 0; background: var(--night); }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-facade { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--ink); text-decoration: none; border: 1px solid var(--line-faint); }
+  .video-facade:hover { color: var(--signal); }
+  .video-facade span { display: inline-flex; align-items: center; gap: 1rem; font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; }
+  @media (max-width: 736px) {
+    .card { width: calc(100% - 3rem); }
+    .sec { padding: 3rem 1.5rem; }
+    .photo { max-width: none; }
+    .photo img, .founder-photo img { height: 24rem; }
+  }
+</style>
+
+<script>
+  import { enhanceForms } from '../scripts/forms.ts';
+  enhanceForms();
+
+  // Click-to-load YouTube (privacy-enhanced). The link still works without JS.
+  document.querySelectorAll<HTMLElement>('[data-video]').forEach((box) => {
+    const link = box.querySelector('a');
+    link?.addEventListener('click', (e) => {
+      e.preventDefault();
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${box.dataset.video}?autoplay=1&rel=0`;
+      iframe.title = 'No Compromise Response Team: Are you prepared?';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      box.replaceChildren(iframe);
+      iframe.focus();
+    });
+  });
+</script>

@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Panel from '../components/Panel.astro';
+import Policies from '../components/Policies.astro';
+import Button from '../components/Button.astro';
+import { site } from '../../shared/config.ts';
+---
+<Layout title={`Refunds and weather policies | ${site.orgName}`} description="Refund, rescheduling and weather policies for our Wednesday field courses.">
+  <section class="wrap stack reveal" style="padding-top: 5rem; padding-bottom: 3rem; gap: 1.5rem;">
+    <p class="eyebrow">Before you register</p>
+    <h1 class="t-heading">Refunds and weather</h1>
+  </section>
+  <div class="wrap" style="padding-bottom: 6rem;">
+    <Panel>
+      <div class="stack-xl">
+        <Policies includeFooter />
+        <div class="btns"><Button variant="solid" href="/register/">Register for a Wednesday</Button></div>
+      </div>
+    </Panel>
+  </div>
+</Layout>

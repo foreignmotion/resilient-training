@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>No Compromise Response Team</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/ncrt/components/bundle.css">
+<script src="ds/ncrt/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@600;700&amp;display=swap">
+<style>
+:root{--night:#13150f;--scrim:rgba(19,21,15,0.72);--panel:rgba(19,21,15,0.78);--ink:#ede7da;--ink-muted:#b8b0a0;--ink-placeholder:rgba(237,231,218,0.55);--signal:#e2863a;--line:#ede7da;--focus:#e2863a;--font-display:"Barlow Condensed",sans-serif;--font-gothic:"Barlow Condensed",sans-serif;--font-sans:Barlow,sans-serif;--space-label:0.25rem;--space-buttons:0.75rem;--space-field:1rem;--space-stack:1.75rem;--space-media:3rem;--gutter-panel:5rem;--gutter-section:5rem;--button-pad-start:2rem;--button-pad-end:1.75rem;--radius-none:0;--control-height:3.75rem;--textarea-height:10rem;--form-width:25rem;--page-width:72rem;--grain-tile:512px;--border-button:2px;--border-input:1px;--blur-panel:0.75rem}
+html{font-size:16px}
+@media (max-width:980px){html{font-size:15px}}
+body{margin:0;background:#13150f}
+.site-bg{--ncrt-photo:url("/_blob/208a891be23be3b6ebf97e97289b5009");background-attachment:scroll,scroll,fixed}
+a{color:#e2863a;text-decoration:underline;text-underline-offset:3px;transition:color .2s}a:hover{color:#ede7da}
+.wrap{max-width:72rem;margin:0 auto;padding-left:5rem;padding-right:5rem}
+.topbar{background:rgba(19,21,15,0.9);border-bottom:1px solid rgba(237,231,218,0.18)}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.375rem;letter-spacing:.06em;text-transform:uppercase;color:#ede7da;text-decoration:none}
+.brand:hover{color:#ede7da}
+.nav a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:.16em;text-transform:uppercase;color:#ede7da;text-decoration:none}
+.nav a:hover,.nav a[aria-current=page]{color:#e2863a}
+.t-display{margin:0;font-family:var(--font-display);font-weight:700;font-size:6.5rem;line-height:.92;letter-spacing:.01em;text-transform:uppercase;color:#ede7da}
+.t-heading{margin:0;font-family:var(--font-display);font-weight:700;font-size:3rem;line-height:1;letter-spacing:.02em;text-transform:uppercase;color:#ede7da}
+.t-body{margin:0;font-family:var(--font-sans);font-size:1.125rem;line-height:1.75;color:#ede7da}
+.t-tight{line-height:1.65}
+.t-item{margin:0;font-family:var(--font-display);font-weight:600;font-size:1.375rem;line-height:1.3;letter-spacing:.02em;color:#ede7da}
+.t-subhead{margin:0;font-family:var(--font-display);font-weight:600;font-size:1rem;line-height:1.4;letter-spacing:.2em;text-transform:uppercase;color:#e2863a}
+.ncrt-eyebrow{font-family:var(--font-display);font-weight:600;font-size:.875rem;line-height:1.4;letter-spacing:.22em;color:#e2863a}
+.ncrt-section-header{gap:.75rem}
+.ncrt-title{font-family:var(--font-display);font-weight:700;letter-spacing:.02em;line-height:1}
+.ncrt-title-section{font-size:3rem}.ncrt-title-tier{font-size:2.25rem}
+.ncrt-course{display:flex;flex-direction:column;gap:.35rem}
+.ncrt-course-name{font-family:var(--font-display);font-weight:700;font-size:1.375rem;line-height:1.3;letter-spacing:.03em;text-transform:uppercase}
+.ncrt-course-desc{font-family:var(--font-sans);font-size:1rem;line-height:1.65;letter-spacing:0}
+.ncrt-btn{font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:.18em}
+.ncrt-btn:hover{transform:none;background:rgba(237,231,218,0.1)}
+.ncrt-btn.solid{background:#e2863a;border-color:#e2863a;color:#13150f}
+.ncrt-btn.solid:hover{background:#ede7da;border-color:#ede7da}
+.ncrt-panel-frosted{border-top:3px solid #e2863a}
+.ncrt-input{font-family:var(--font-sans);font-size:1.0625rem;letter-spacing:0;border-color:rgba(237,231,218,0.6)}
+.ncrt-input:focus{border-color:#ede7da}
+.ncrt-field-label{font-family:var(--font-display);font-weight:600;font-size:.875rem;letter-spacing:.16em;margin:0 0 .5rem}
+.fact{display:flex;flex-direction:column;gap:.25rem;padding-top:1rem;border-top:1px solid rgba(237,231,218,0.25)}
+.policy{display:flex;flex-direction:column;gap:1rem}
+.policy strong{font-weight:600}
+@media (max-width:736px){.wrap{padding-left:1.5rem;padding-right:1.5rem}.t-display{font-size:3.5rem}.t-heading,.ncrt-title-section{font-size:2.25rem}.ncrt-title-tier{font-size:1.875rem}.ncrt-panel-pad{padding:3rem 1.5rem}.ncrt-eyebrow{letter-spacing:.18em}}
+.sec{box-sizing:border-box;padding:5rem}
+.card{width:calc(100% - 10rem);max-width:72rem;margin:0 auto 4rem;box-sizing:border-box;display:flex;justify-content:center}
+.photo{display:block;width:100%;max-width:26rem;height:32rem;object-fit:cover}
+.t-small{margin:0;font-family:var(--font-sans);font-size:1rem;line-height:1.65;font-style:italic;color:#b8b0a0}
+.video{display:flex;align-items:center;justify-content:center;width:100%;aspect-ratio:16/9;margin:.5rem 0;background:#000;color:#ede7da;text-decoration:none}
+.video:hover{color:#e2863a}
+.video span{display:inline-flex;align-items:center;gap:1rem;font-family:var(--font-display);font-weight:600;font-size:1rem;letter-spacing:.18em;text-transform:uppercase}
+@media (max-width:736px){.card{width:calc(100% - 3rem)}.sec{padding:3rem 1.5rem}.photo{max-width:none;height:24rem}}
+</style>
+</helmet>
+<div class="ncrt-backdrop site-bg" style="min-height: 100vh; color: #ede7da; font-family: Barlow, sans-serif;">
+
+<header class="topbar">
+<div class="wrap" style="padding-top: 1rem; padding-bottom: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 3rem;">
+<a href="Main.dc.html" class="brand">[Organization name]</a>
+<nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 2rem;">
+<a href="Main.dc.html">Courses</a>
+<a href="NCRT.dc.html" aria-current="page">NCRT</a>
+<a href="Main.dc.html">Location</a>
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" href="Register.dc.html">Register</x-import>
+</nav>
+</div>
+</header>
+
+<section class="wrap" style="padding-top: 7rem; padding-bottom: 5rem;">
+<div style="max-width: 56rem; display: flex; flex-direction: column; gap: 1.75rem;">
+<h2 class="t-subhead">Rescue trainings across the Midwest and Southeast</h2>
+<h1 class="t-display">No Compromise Response team</h1>
+<p class="t-body" style="max-width: 44rem; font-size: 1.25rem;">Together, we’re building a network of capable individuals, ready to help anyone in need. You don’t have to do it alone. Join us—and become someone others can depend on when it matters most.</p>
+<div class="ncrt-btns" style="padding-top: 1rem;">
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" href="#five">Take a course</x-import>
+<x-import component-from-global-scope="NCRT.Button" href="#one" icon="arrow-down">Learn More</x-import>
+</div>
+</div>
+</section>
+
+<div id="one" class="ncrt-panel ncrt-panel-frosted sec card">
+<div style="width: 100%; max-width: 48rem; display: flex; flex-direction: column; gap: 2rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Watch the video" title="Are you prepared?" size="section"></x-import>
+<a class="video" href="https://www.youtube.com/watch?v=SbS8AjeXPLM" aria-label="Watch the NCRT video on YouTube">
+<span>
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"></path></svg>
+Play video
+</span>
+</a>
+<div style="display: flex; flex-direction: column; gap: 1rem;">
+<p class="t-body t-tight">Have you ever wondered what you would do if you got injured in the backcountry?<br>What about coming across a car wreck before emergency responders arrived?</p>
+<p class="t-body t-tight">Have you considered whether you have the skills and tools to be a valuable asset when the unthinkable happens—whether it’s a crisis in the wilderness, a disaster in your community, or even a conflict close to home?</p>
+<p class="t-body t-tight">Imagine finding yourself far from cell service, deep in the wilderness, when someone in your group becomes ill or injured, unable to continue without assistance. Or perhaps you’ve dreamed of venturing further than ever before—exploring remote regions, undertaking mission work, or leading expeditions into uncharted territories.</p>
+<p class="t-body t-tight">But what if our trusted systems falter? What if local emergency services become overwhelmed, or government aid fails to materialize during a natural disaster, as millions of Americans have experienced in recent years?</p>
+</div>
+<p class="t-subhead">The Need for Readiness</p>
+<div style="display: flex; flex-direction: column; gap: 1rem;">
+<p class="t-body t-tight">These questions aren't just hypothetical; they are the reality many face. I’ve spent years learning, training, and honing skills to be prepared for these situations. More than that, I’ve dedicated myself to teaching others how to be ready when it matters most.</p>
+<p class="t-body t-tight">As the saying goes: “Hard times create strong men; strong men create good times; good times create weak men; and weak men create hard times.” Right now, we’re in the latter stages of that cycle. It’s time to reverse the trend.</p>
+</div>
+<p class="t-subhead">Join the No Compromise Response Team</p>
+<div style="display: flex; flex-direction: column; gap: 1rem;">
+<p class="t-body t-tight">What are you doing to ensure you’re part of the solution, not another helpless individual relying on limited resources? My passion is equipping people like you with the tools, knowledge, and confidence to make a difference when the unexpected happens.</p>
+<p class="t-body t-tight">Whether it’s saving a life in the wilderness, responding to emergencies in your community, or preparing for challenges we all hope never come, training with us will empower you to rise to the occasion.</p>
+</div>
+</div>
+</div>
+
+<div class="ncrt-panel ncrt-panel-frosted sec card">
+<div style="width: 100%; max-width: 62rem; display: flex; flex-wrap: wrap; align-items: center; gap: 4rem;">
+<div style="flex: 1 1 21rem; min-width: 0; display: flex; justify-content: center;">
+<img class="photo" src="/_blob/3f5522218d103f4a2fd888cdd7cb1b97" alt="Two people on ropes under a bridge at dusk, headlamps on">
+</div>
+<div style="flex: 1 1 21rem; min-width: 0; display: flex; flex-direction: column; gap: 2rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Course Examples" title="1 Day Trainings"></x-import>
+<div class="ncrt-list">
+<x-import component-from-global-scope="NCRT.CourseItem" name="Wilderness Medical Response">Expect to grasp the fundamentals of medical assessment and treatment, and patient movement with makeshift litters.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Intro to Ropes">In this course you’ll learn some of the most useful knots and climb and rappel techniques, as well as valuable knowledge on types of ropes and rope equipment and their various uses.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Patient Movement">This course covers a variety of ways to move an injured person to a transport vehicle in varying terrain over any distance.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Inclement Weather Survival">During this training day, you will be taught imperative skills for surviving the less-than-ideal weather conditions often encountered in the wilderness, or in emergency situations such as your car running off the road or breaking down in an area outside of cell coverage.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Intro to Wilderness Survival">We’ll teach you about the first three priorities when you are lost or intentionally overnighting in the wilderness: water, shelter, fire. And we’ll touch on a variety of useful skills and knowledge for making life outdoors a safer and more enjoyable experience. You can thrive on less than you might’ve realized when you master the necessary knowledge and skills.</x-import>
+</div>
+<div class="ncrt-btns" style="padding: 1rem 0;">
+<x-import component-from-global-scope="NCRT.Button" href="#five" icon="arrow-down">Take a Course</x-import>
+</div>
+</div>
+</div>
+</div>
+
+<div class="ncrt-panel ncrt-panel-frosted sec card">
+<div style="width: 100%; max-width: 62rem; display: flex; flex-wrap: wrap; align-items: center; gap: 4rem;">
+<div style="flex: 1 1 21rem; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+<img class="photo" src="/_blob/208a891be23be3b6ebf97e97289b5009" alt="Packaging a casualty in a litter beside a tripod at a cliff overlook">
+<img class="photo" src="/_blob/8e38630a367b5b55a5abaaf863772f4a" alt="Looking down a mossy rock crevice at a rescuer on rope">
+</div>
+<div style="flex: 1 1 21rem; min-width: 0; display: flex; flex-direction: column; gap: 2rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Course Examples" title="2 Day Trainings"></x-import>
+<p class="t-small">(Multi-day courses often end with realistic scenarios and nighttime training. All multi-day courses involve camping in a wilderness setting, and have a significantly more extensive pack list than single day courses.)</p>
+<div class="ncrt-list">
+<x-import component-from-global-scope="NCRT.CourseItem" name="Wilderness Medical Response">Here you’ll be taught how to evaluate an accident/injury scene for safety, mitigate further injuries, assess the injured person’s condition, and treat injuries to stabilize the casualty for transport or hand-off to a higher level of care.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Intro To Ropes 2">Delve deeper into rope skills than single-day rope courses. Participants can tie several important knots, climb, rappel, and perform changeovers on ropes within a couple of days.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Patient Movement 2">Come ready to gain useful skills in manual patient movement, even in adverse conditions including rocky, steep, or vertical terrain. Expect to get your hands dirty and your muscles sore as you put these skills into practice.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Inclement Weather Survival 2">Increase your ability to thrive in nature without many of the modern conveniences most of us are accustomed to in daily life. Even when the weather turns for the worse, learn to live by the reality that “There’s no such thing as bad weather, just bad gear” (and a lack of knowledge).</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Wilderness Survival and Bushcraft">Spend two days learning how to navigate the trials the wilderness brings. Gain the ability to stay overnight in the backcountry with minimal equipment, whether you’re intentionally out hiking, or lost in the wild. We’ll practice such skills as finding and purifying water, creating shelter from the elements, and making fires, even in wet environments.</x-import>
+</div>
+<div class="ncrt-btns" style="padding: 1rem 0;">
+<x-import component-from-global-scope="NCRT.Button" href="#five" icon="arrow-down">Take a Course</x-import>
+</div>
+</div>
+</div>
+</div>
+
+<div class="ncrt-panel ncrt-panel-frosted sec card">
+<div style="width: 100%; max-width: 62rem; display: flex; flex-wrap: wrap; align-items: center; gap: 4rem;">
+<div style="flex: 1 1 21rem; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+<img class="photo" src="/_blob/18058d499a3adb7d9a58f50427957c20" alt="Night scenario: a simulated leg wound lit by a headlamp">
+<img class="photo" src="/_blob/57f00c15f3b88735be82a85c31233184" alt="Moving a loaded litter over a cliff edge on a tripod system">
+<img class="photo" src="/_blob/9b3c1b87c27d154796a6e4626782b0d1" alt="Rescuers working a rock wall on rope at night">
+</div>
+<div style="flex: 1 1 21rem; min-width: 0; display: flex; flex-direction: column; gap: 2rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Course Examples" title="3-4 Day trainings" size="section"></x-import>
+<p class="t-small">(Multi-day courses often end with realistic scenarios and nighttime training. All multi-day courses involve camping in a wilderness setting, and have a significantly more extensive pack list than single day courses.)</p>
+<div class="ncrt-list">
+<x-import component-from-global-scope="NCRT.CourseItem" name="Wilderness Medical Response">We’ll go into detail about how to evaluate an injury scene to determine proper action, and what to look for when assessing your patient for injuries. We’ll talk about basic anatomy and physiology, and how to stabilize injuries until a casualty can be handed off to higher care. We’ll discuss continual patient assessment during an extended wait or casualty evacuation, and you’ll learn what medical equipment to carry in your kit and how to use it. This course will include lots of outdoor action, not just classroom style lecturing.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Intro to Ropes 3">Multiple days playing with ropes and you’ll start feeling quite comfortable in the rope world. This course is designed to get you comfortable with selecting the appropriate ropes and vertical gear for your situation, caring for them, and using them. Most students will be comfortable climbing, rappelling, and performing changeovers and basic rope maneuvers before the end of this course.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Intro to Ropes Rescue">In this course, you’ll be given the tools necessary to perform basic patient treatment and movement in a horizontal or vertical situation requiring the assistance of ropes. That begins with basic medical and rope knowledge. Even if you’ve never been on rope, or learned how to assess a patient, you’ll learn those skills from the ground up (literally).</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Patient Movement 3">This multi-day training event will cover many options for moving and hauling an injured person in vertical and horizontal applications. It will include hands-on learning and realistic training scenarios. To attend this course, you need to be level 2 or higher, or have passed a level 1 rope skills test on a previous training event with NCRT.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="In-Depth Inclement Weather Survival">Learn skills for surviving the forces of nature and experience multiple days in the wilderness, putting these skills into practice. Our goal is for you to come away from this course with the know-how to thrive outdoors, no matter the weather. You’ll learn how to prepare for, and stay safe while venturing beyond civilization, without being limited to sunny day vacations.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Wilderness Survival and Bushcraft">This is currently our most in-depth survival course, covering basic survival skills relating to such priority topics as water, shelter, fire, food. We will focus on both preparedness before venturing into the wilderness, and what to do if you find yourself in an emergency situation with limited gear. Our time will be spent in the wilderness, learning and practicing these important skills.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Rope Rescue Intensive Scenario Course">Once you’ve been to some training courses and can demonstrate the relevant skills, you’ll have the opportunity to attend intensive, scenario-based training events to put your learning into practice all weekend with realistic scenarios.</x-import>
+</div>
+<div class="ncrt-btns" style="padding: 1rem 0;">
+<x-import component-from-global-scope="NCRT.Button" href="#five" icon="arrow-down">Take a course</x-import>
+</div>
+</div>
+</div>
+</div>
+
+<section class="wrap" style="padding-top: 3rem; padding-bottom: 5rem;">
+<div style="width: 100%;  display: flex; flex-wrap: wrap; align-items: center; gap: 5rem;">
+<div style="flex: 1 1 26rem; min-width: 0; display: flex; flex-direction: column; gap: 2rem;">
+<div style="display: flex; flex-direction: column; gap: 0.5rem;">
+<h2 class="ncrt-eyebrow" style="margin: 0;">Founder and Head of Operations</h2>
+<h2 class="ncrt-title ncrt-title-section">Jether English</h2>
+</div>
+<p class="t-body">Living most of my life outdoors, I've developed a deep passion for wilderness survival, exploration, and rescue work. My journey in the rescue world began at the age of 19 as a volunteer firefighter. Over the years, my interest in rescue work evolved into a lifestyle.</p>
+<p class="t-body">My focus spans medical and rope rescue, land navigation, wilderness survival skills, and more. Currently, I conduct rescue and wilderness survival training courses across the US, with hands-on learning, enhancing content and quality with each session.</p>
+<p class="t-body">While my firsthand rescue experience is limited mostly to car wrecks and medical calls with the fire department, I've trained alongside seasoned professionals, including Special Forces and Spec Ops soldiers, mastering high-level tactical medicine. My certifications include GA State Firefighter, BLS/CPR, TECC and TCCC, with plans to pursue Firefighter 1&amp;2, WFR, and EMT/Wilderness EMT in 2025.</p>
+</div>
+<div style="flex: 1 1 26rem; min-width: 0; display: flex; justify-content: center;">
+<img src="/_blob/0eb659243e776ffbcb340e23895914d0" alt="Jether English raising a litter on a tripod above a valley" style="display: block; width: 100%; height: 32rem; object-fit: cover;">
+</div>
+</div>
+</section>
+
+<section id="five" class="wrap" style="padding-top: 3rem; padding-bottom: 5rem;">
+<div style="width: 100%;  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 5rem;">
+<div style="flex: 1 1 26rem; min-width: 0; display: flex; flex-direction: column; gap: 2rem;">
+<h2 class="ncrt-title ncrt-title-section">Get In Touch</h2>
+<p class="t-body t-tight">Fill out this form if you are interested in taking a course. You aren't committing to anything - just expressing interest.</p>
+<sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+<form class="ncrt-form" onSubmit="{{ send }}">
+<x-import component-from-global-scope="NCRT.TextField" name="name" placeholder="First Name" aria-label="First Name" required="{{ yes }}"></x-import>
+<x-import component-from-global-scope="NCRT.TextField" name="lastname" placeholder="Last Name" aria-label="Last Name" required="{{ yes }}"></x-import>
+<x-import component-from-global-scope="NCRT.TextField" type="email" name="email" placeholder="Email" aria-label="Email" required="{{ yes }}"></x-import>
+<x-import component-from-global-scope="NCRT.TextField" multiline="{{ yes }}" name="message" placeholder="Which course(s) are you interested in?" aria-label="Which course(s) are you interested in?" required="{{ yes }}"></x-import>
+<div class="ncrt-btns" style="padding-top: 1rem;">
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" type="submit">Send</x-import>
+</div>
+</form>
+</sc-if>
+<sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+<p class="t-item" role="status">Thank you. Your message has been sent.</p>
+</sc-if>
+</div>
+<div style="flex: 1 1 26rem; min-width: 0; display: flex; flex-direction: column; gap: 2rem;">
+<h2 class="ncrt-title ncrt-title-section">Fees and Process</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 1.25rem 2rem;">
+<div class="fact" style="flex: 1 1 10rem;">
+<p class="ncrt-eyebrow">Level 1</p>
+<p class="t-item">$75 per day</p>
+</div>
+<div class="fact" style="flex: 1 1 10rem;">
+<p class="ncrt-eyebrow">Level 2</p>
+<p class="t-item">$50 per day</p>
+</div>
+<div class="fact" style="flex: 1 1 10rem;">
+<p class="ncrt-eyebrow">Level 3</p>
+<p class="t-item">Free, assisting</p>
+</div>
+<div class="fact" style="flex: 1 1 10rem;">
+<p class="ncrt-eyebrow">Vertical gear rental</p>
+<p class="t-item">$50, then $25 per day</p>
+</div>
+</div>
+<p class="t-body t-tight">I charge $75 per day for level 1 students, $50 per day for level 2 students, and attendance is free for level 3 students, who assist as needed. Level 1 is entry level. To reach level 2, passing a skills test is required. The level 3 test is more extensive with increased physical fitness requirements. Vertical gear rental is available for some courses involving ropes. The cost for gear rental is $50 for the first day, and $25 per day for subsequent days on a training course.</p>
+<p class="t-body t-tight">If you decide you want to continue training with us long term, you’ll have the opportunity to advance, and with that advancement you’ll pay less in tuition, and also gain more responsibility in leadership.</p>
+</div>
+</div>
+</section>
+
+<footer class="topbar" style="border-bottom: 0; border-top: 1px solid rgba(237, 231, 218, 0.18);">
+<div class="wrap" style="padding-top: 2rem; padding-bottom: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 3rem;">
+<p class="ncrt-eyebrow" style="margin: 0; color: #ede7da;">© 2026 [Organization name] · Middle Tennessee</p>
+<nav class="nav" aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 0 2rem;">
+<a href="Main.dc.html">Home</a>
+<a href="Register.dc.html">Register</a>
+</nav>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sent: false };
+  }
+  renderVals() {
+    var self = this;
+    return {
+      yes: true,
+      sent: this.state.sent,
+      notSent: !this.state.sent,
+      send: function (e) {
+        e.preventDefault();
+        self.setState({ sent: true });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

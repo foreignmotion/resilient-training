@@ -1,0 +1,123 @@
+{
+  "name": "No Compromise Response Team",
+  "version": 1,
+  "meta": { "source": "ncrteam.com (Carrd site stylesheet, read 2026-10-05)" },
+  "color": {
+    "themes": [{ "id": "night", "name": "Night" }],
+    "tokens": [
+      { "name": "night", "value": "#141417", "usage": "The ground. Solid form of the site's scrim colour rgb(20,20,23); use it wherever there is no photograph behind the content." },
+      { "name": "scrim", "value": "rgba(20, 20, 23, 0.55)", "usage": "Full-bleed overlay laid over the background photograph so white type reads (body::before on the site). Never show a photo behind text without it." },
+      { "name": "panel", "value": "rgba(20, 20, 23, 0.48)", "usage": "Frosted section panel (Carrd container style1): this fill + the grain texture + backdrop blur `blur-panel` over the photograph." },
+      { "name": "grain", "value": "rgba(27, 28, 41, 0.586)", "usage": "Ink of the fractal-noise grain texture (assets/Textures/grain.svg), tiled at 512px over the scrim and on panels. Derived exactly from the texture's colour matrix; do not use as a flat fill." },
+      { "name": "curtain", "value": "#27282a", "usage": "Page-load curtain that fades out over 0.875s (body::after). Not a content surface." },
+      { "name": "ink", "value": "#ffffff", "usage": "All text, button labels and borders, icon fills. 18.4:1 on `night`; on a photograph it must sit on `scrim` or `panel`." },
+      { "name": "ink-muted", "value": "#747989", "usage": "Highlighted words (<mark>) inside body text and the hover colour of links. 4.24:1 on `night`: below 4.5:1, so keep it to marked words in 1rem+ text or 24px+ text, never small body copy. Exact from source." },
+      { "name": "ink-placeholder", "value": "rgba(255, 255, 255, 0.55)", "usage": "Input placeholder text (white at 0.55 opacity), on `night` or `panel`." },
+      { "name": "signal", "value": "#5c83ee", "usage": "The one hue. Inline links in body text, highlighted words in eyebrows, link hover in eyebrows, and the focus ring. 5.2:1 on `night`. Never a fill behind white text (3.5:1)." },
+      { "name": "line", "value": "{ink}", "usage": "Borders: 3px on buttons, 1px on inputs. Always white, always square." },
+      { "name": "focus", "value": "{signal}", "usage": "Keyboard focus ring: 2px solid, offset 3px, around buttons and fields (an addition; the source defines none). 5.2:1 on `night`." },
+      { "name": "paper", "value": "#f7f8fc", "usage": "Off-white of the page under the photograph and the letterforms of the NCRT wordmark. For light grounds outside the site (print, merch); `night` text on it is 17.3:1." },
+      { "name": "wordmark-ground", "value": "#181c1f", "usage": "Ground of the NCRT wordmark lockup (sampled from the share image, a JPEG, so treat as approximate). Use behind the wordmark when it is set as a solid tile." },
+      { "name": "code-wash", "value": "rgba(144, 144, 144, 0.25)", "usage": "Background of inline code and of <mark> outside the text styles." },
+      { "name": "spoiler", "value": "rgba(32, 32, 32, 0.75)", "usage": "Spoiler-text cover; revealed text turns `ink`." },
+      { "name": "video-ground", "value": "#000000", "usage": "Letterbox behind embedded video frames." }
+    ]
+  },
+  "type": {
+    "fonts": [],
+    "families": {
+      "display": "\"Bai Jamjuree\", sans-serif",
+      "gothic": "\"Dela Gothic One\", cursive",
+      "sans": "Inter, sans-serif",
+      "mono": "\"Lucida Console\", \"Courier New\", monospace"
+    },
+    "groups": [
+      {
+        "name": "Display",
+        "family": "display",
+        "styles": [
+          { "name": "display", "fontSize": "5rem", "lineHeight": 1.25, "fontWeight": 700, "letterSpacing": "0.5rem", "sample": "NO COMPROMISE RESPONSE TEAM", "usage": "The team name in the hero, once per page. UPPERCASE. Below 737px: 2.25rem with 0.4375rem tracking. (Carrd text style2.)" },
+          { "name": "form-label", "fontSize": "1rem", "lineHeight": 1.5, "fontWeight": 700, "letterSpacing": "0rem", "sample": "FIRST NAME", "usage": "Field labels in forms. UPPERCASE." }
+        ]
+      },
+      {
+        "name": "Headings",
+        "family": "gothic",
+        "styles": [
+          { "name": "heading", "fontSize": "2rem", "lineHeight": 1.5, "fontWeight": 400, "letterSpacing": "0.5rem", "sample": "GET IN TOUCH", "usage": "Section titles (GET IN TOUCH, FEES AND PROCESS, the founder's name, 3-4 DAY TRAININGS). UPPERCASE. Below 737px: 1.5rem, 0.4375rem tracking. (style3)" },
+          { "name": "heading-sm", "fontSize": "1.75rem", "lineHeight": 1.5, "fontWeight": 400, "letterSpacing": "0.5rem", "sample": "1 DAY TRAININGS", "usage": "Course-tier titles under an eyebrow. UPPERCASE, left aligned. Below 737px: 1.5rem. (style10)" },
+          { "name": "subhead", "fontSize": "1rem", "lineHeight": 2.25, "fontWeight": 400, "letterSpacing": "0.325rem", "sample": "Are You Prepared?", "usage": "Small sentence-case headings inside a panel (Watch the Video, The Need for Readiness) and role lines (Founder and Head of Operations). Centred in panels (style9), left beside portraits (style5)." }
+        ]
+      },
+      {
+        "name": "Text",
+        "family": "sans",
+        "styles": [
+          { "name": "eyebrow", "fontSize": "0.75rem", "lineHeight": 1.625, "fontWeight": 400, "letterSpacing": "0.4rem", "sample": "COURSE EXAMPLES", "usage": "Kicker above a heading. UPPERCASE; marked words in `signal`. Below 737px: 0.35rem tracking. (style4)" },
+          { "name": "body", "fontSize": "1rem", "lineHeight": 2.25, "fontWeight": 400, "letterSpacing": "0.075rem", "sample": "Together, we're building a network of capable individuals, ready to help anyone in need.", "usage": "Hero intro and founder bio. Links `signal`, no underline. (style1)" },
+          { "name": "body-tight", "fontSize": "1rem", "lineHeight": 2, "fontWeight": 400, "letterSpacing": "0.075rem", "sample": "Have you ever wondered what you would do if you got injured in the backcountry?", "usage": "Long-form paragraphs in panels and the form intro. (style8)" },
+          { "name": "item-title", "fontSize": "1rem", "lineHeight": 2.25, "fontWeight": 900, "letterSpacing": "0.075rem", "sample": "Wilderness Medical Response", "usage": "Course names and the hero kicker line (Rescue trainings across the Midwest and Southeast). Title Case. (style6)" },
+          { "name": "item-body", "fontSize": "0.75rem", "lineHeight": 2.25, "fontWeight": 400, "letterSpacing": "0.075rem", "sample": "Expect to grasp the fundamentals of medical assessment and treatment, and patient movement with makeshift litters.", "usage": "Course descriptions and parenthetical notes under a tier title. Grows to 1rem below 737px. (style7)" },
+          { "name": "button-label", "fontSize": "0.75rem", "lineHeight": 1, "fontWeight": 400, "letterSpacing": "0.4rem", "sample": "TAKE A COURSE", "usage": "Button and submit labels. UPPERCASE. Below 737px: 1rem." },
+          { "name": "field", "fontSize": "1rem", "lineHeight": 2.25, "fontWeight": 400, "letterSpacing": "0.075rem", "sample": "Which course(s) are you interested in?", "usage": "Text typed into inputs and textareas, and checkbox labels." }
+        ]
+      },
+      {
+        "name": "Code",
+        "family": "mono",
+        "styles": [
+          { "name": "code", "fontSize": "0.9em", "lineHeight": 1, "fontWeight": 400, "letterSpacing": "0px", "sample": "level-2", "usage": "Inline code on `code-wash`, radius `radius-code`." }
+        ]
+      }
+    ]
+  },
+  "spacing": {
+    "note": "Root size is 16pt (21.33px) above 1680px wide, 12pt (16px) from 1680px down, 10pt (13.33px) from 980px down. Every value is rem, so the whole layout scales with it.",
+    "tokens": [
+      { "name": "space-label", "value": "0.25rem", "usage": "Space above a form label (0.75rem below it)." },
+      { "name": "space-buttons", "value": "0.75rem", "usage": "Gap between buttons in a row." },
+      { "name": "space-field", "value": "1rem", "usage": "Gap between form fields." },
+      { "name": "space-stack", "value": "2rem", "usage": "Default vertical gap between elements in a section." },
+      { "name": "space-media", "value": "3rem", "usage": "Space above and below an embedded video and a button row." },
+      { "name": "gutter-panel", "value": "5rem", "usage": "Column gutter in transparent two-column sections (founder, contact)." },
+      { "name": "gutter-section", "value": "6rem", "usage": "Column gutter in frosted course sections; also the page's inner padding on every side." },
+      { "name": "button-pad-start", "value": "2.525rem", "usage": "Button left padding (balances the 0.4rem tracking on the label)." },
+      { "name": "button-pad-end", "value": "2.125rem", "usage": "Button right padding." }
+    ]
+  },
+  "radius": {
+    "tokens": [
+      { "name": "radius-none", "value": "0", "usage": "Everything: buttons, inputs, checkboxes, panels, images, video. The brand is square." },
+      { "name": "radius-code", "value": "0.25em", "usage": "Inline code only." }
+    ]
+  },
+  "size": {
+    "tokens": [
+      { "name": "control-height", "value": "4.25rem", "usage": "Height of buttons and single-line inputs." },
+      { "name": "textarea-height", "value": "10rem", "usage": "Height of the message textarea." },
+      { "name": "checkbox-size", "value": "3.1875rem", "usage": "Checkbox square." },
+      { "name": "form-width", "value": "25rem", "usage": "Width of the interest form." },
+      { "name": "page-width", "value": "70rem", "usage": "Max content width inside the page padding." },
+      { "name": "grain-tile", "value": "512px", "usage": "Tile size of the grain texture." }
+    ]
+  },
+  "border": {
+    "tokens": [
+      { "name": "border-button", "value": "3px", "usage": "Button and submit outline, solid `line`." },
+      { "name": "border-input", "value": "1px", "usage": "Input, textarea, select and checkbox outline, solid `line`." }
+    ]
+  },
+  "blur": {
+    "tokens": [
+      { "name": "blur-panel", "value": "0.75rem", "usage": "backdrop-filter blur on frosted panels." }
+    ]
+  },
+  "breakpoint": {
+    "tokens": [
+      { "name": "bp-xlarge", "value": "1680px", "usage": "At or below: root 12pt." },
+      { "name": "bp-medium", "value": "980px", "usage": "At or below: root 10pt." },
+      { "name": "bp-small", "value": "736px", "usage": "At or below: mobile type sizes, columns stack." },
+      { "name": "bp-xsmall", "value": "360px", "usage": "Smallest tuned width; body min-width is 320px." }
+    ]
+  }
+}

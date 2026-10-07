@@ -1,0 +1,16 @@
+---
+interface Props {
+  label?: string;
+  multiline?: boolean;
+  id?: string;
+  class?: string;
+  style?: string;
+  [key: string]: unknown;
+}
+const { label, multiline, id: givenId, class: cls, style, ...rest } = Astro.props;
+const id = givenId ?? `f-${Math.random().toString(36).slice(2, 9)}`;
+---
+<div class:list={['field', cls]} style={style}>
+  {label && <label for={id} class="field-label">{label}</label>}
+  {multiline ? <textarea id={id} class="input" {...rest} /> : <input id={id} class="input" {...rest} />}
+</div>

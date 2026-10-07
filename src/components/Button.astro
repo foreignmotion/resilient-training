@@ -1,0 +1,18 @@
+---
+/** Outline call to action. `solid` = ember fill. Renders <a> with href, otherwise <button>. */
+interface Props {
+  href?: string;
+  variant?: 'solid' | 'outline';
+  icon?: 'arrow-down';
+  type?: 'button' | 'submit';
+  class?: string;
+  [key: string]: unknown;
+}
+const { href, variant = 'outline', icon, type = 'button', class: cls, ...rest } = Astro.props;
+const classes = ['btn', variant === 'solid' && 'btn-solid', cls].filter(Boolean).join(' ');
+---
+{href ? (
+  <a href={href} class={classes} {...rest}><span><slot /></span>{icon === 'arrow-down' && <svg class="btn-icon" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><path d="M19.8 34.2c-.3 0-.3-.1-.4-.1L6.6 21.4c-.1-.1-.1-.1-.1-.4s.1-.3.1-.4l1.5-1.5c.1-.1.1-.1.4-.1s.3.1.4.1l9.2 9.2V5.9c0-.1 0-.2 0-.2.1-.1.2-.1.4-.1H21c.2 0 .4.1.5.1v22.6l9.2-9.2c.1-.1.1-.1.4-.1s.3.1.4.1l1.5 1.5c.1.1.1.1.1.4s-.1.3-.1.4L20.2 34.1c-.1 0-.1.1-.4.1z"/></svg>}</a>
+) : (
+  <button type={type} class={classes} {...rest}><span><slot /></span></button>
+)}

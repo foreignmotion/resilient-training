@@ -1,0 +1,15 @@
+---
+import { linkContacts, policySections } from '../../shared/legal.ts';
+interface Props { includeFooter?: boolean }
+const { includeFooter = false } = Astro.props;
+const { sections, footer } = policySections();
+---
+<div style="display: flex; flex-wrap: wrap; gap: 3rem 4rem;">
+  {sections.map((s, i) => (
+    <div class="policy" style="flex: 1 1 22rem; min-width: 0;">
+      <h3 class="t-subhead">{s.title}</h3>
+      {s.items.map((b) => b.type === 'p' && <p class="t-body t-tight" set:html={b.html} />)}
+      {includeFooter && i === 0 && footer.map((b) => b.type === 'p' && <p class="t-body t-tight" set:html={linkContacts(b.html)} />)}
+    </div>
+  ))}
+</div>

@@ -1,0 +1,5 @@
+---
+interface Props { variant?: 'frosted' | 'clear'; padded?: boolean; as?: string; class?: string; id?: string; [key: string]: unknown }
+const { variant = 'frosted', padded = true, as: Tag = 'div', class: cls, ...rest } = Astro.props;
+---
+<Tag class:list={['panel', `panel-${variant}`, padded && 'panel-pad', cls]} {...rest}><slot /></Tag>

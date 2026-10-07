@@ -1,0 +1,8 @@
+# Copy to .dev.vars for local `npm run preview`. In production set these in
+# Cloudflare Pages > Settings > Environment variables (as secrets).
+STRIPE_SECRET_KEY=sk_test_xxx
+STRIPE_WEBHOOK_SECRET=whsec_xxx
+RESEND_API_KEY=re_xxx
+# Google Apps Script web app URL for the email list sheet (see docs/google-sheet-list.md)
+LIST_WEBHOOK_URL=
+LIST_WEBHOOK_SECRET=

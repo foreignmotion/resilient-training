@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home — Wilderness Survival Fundamentals</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/ncrt/components/bundle.css">
+<script src="ds/ncrt/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&amp;family=Barlow+Condensed:wght@600;700&amp;display=swap">
+<style>
+:root{--night:#13150f;--scrim:rgba(19,21,15,0.72);--panel:rgba(19,21,15,0.78);--ink:#ede7da;--ink-muted:#b8b0a0;--ink-placeholder:rgba(237,231,218,0.55);--signal:#e2863a;--line:#ede7da;--focus:#e2863a;--font-display:"Barlow Condensed",sans-serif;--font-gothic:"Barlow Condensed",sans-serif;--font-sans:Barlow,sans-serif;--space-label:0.25rem;--space-buttons:0.75rem;--space-field:1rem;--space-stack:1.75rem;--space-media:3rem;--gutter-panel:5rem;--gutter-section:5rem;--button-pad-start:2rem;--button-pad-end:1.75rem;--radius-none:0;--control-height:3.75rem;--textarea-height:10rem;--form-width:25rem;--page-width:72rem;--grain-tile:512px;--border-button:2px;--border-input:1px;--blur-panel:0.75rem}
+html{font-size:16px}
+@media (max-width:980px){html{font-size:15px}}
+body{margin:0;background:#13150f}
+.site-bg{--ncrt-photo:url("/_blob/208a891be23be3b6ebf97e97289b5009");background-attachment:scroll,scroll,fixed}
+a{color:#e2863a;text-decoration:underline;text-underline-offset:3px;transition:color .2s}a:hover{color:#ede7da}
+.wrap{max-width:72rem;margin:0 auto;padding-left:5rem;padding-right:5rem}
+.topbar{background:rgba(19,21,15,0.9);border-bottom:1px solid rgba(237,231,218,0.18)}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.375rem;letter-spacing:.06em;text-transform:uppercase;color:#ede7da;text-decoration:none}
+.brand:hover{color:#ede7da}
+.nav a{display:inline-flex;align-items:center;min-height:44px;font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:.16em;text-transform:uppercase;color:#ede7da;text-decoration:none}
+.nav a:hover,.nav a[aria-current=page]{color:#e2863a}
+.t-display{margin:0;font-family:var(--font-display);font-weight:700;font-size:6.5rem;line-height:.92;letter-spacing:.01em;text-transform:uppercase;color:#ede7da}
+.t-heading{margin:0;font-family:var(--font-display);font-weight:700;font-size:3rem;line-height:1;letter-spacing:.02em;text-transform:uppercase;color:#ede7da}
+.t-body{margin:0;font-family:var(--font-sans);font-size:1.125rem;line-height:1.75;color:#ede7da}
+.t-tight{line-height:1.65}
+.t-item{margin:0;font-family:var(--font-display);font-weight:600;font-size:1.375rem;line-height:1.3;letter-spacing:.02em;color:#ede7da}
+.t-subhead{margin:0;font-family:var(--font-display);font-weight:600;font-size:1rem;line-height:1.4;letter-spacing:.2em;text-transform:uppercase;color:#e2863a}
+.ncrt-eyebrow{font-family:var(--font-display);font-weight:600;font-size:.875rem;line-height:1.4;letter-spacing:.22em;color:#e2863a}
+.ncrt-section-header{gap:.75rem}
+.ncrt-title{font-family:var(--font-display);font-weight:700;letter-spacing:.02em;line-height:1}
+.ncrt-title-section{font-size:3rem}.ncrt-title-tier{font-size:2.25rem}
+.ncrt-course{display:flex;flex-direction:column;gap:.35rem}
+.ncrt-course-name{font-family:var(--font-display);font-weight:700;font-size:1.375rem;line-height:1.3;letter-spacing:.03em;text-transform:uppercase}
+.ncrt-course-desc{font-family:var(--font-sans);font-size:1rem;line-height:1.65;letter-spacing:0}
+.ncrt-btn{font-family:var(--font-display);font-weight:600;font-size:.9375rem;letter-spacing:.18em}
+.ncrt-btn:hover{transform:none;background:rgba(237,231,218,0.1)}
+.ncrt-btn.solid{background:#e2863a;border-color:#e2863a;color:#13150f}
+.ncrt-btn.solid:hover{background:#ede7da;border-color:#ede7da}
+.ncrt-panel-frosted{border-top:3px solid #e2863a}
+.ncrt-input{font-family:var(--font-sans);font-size:1.0625rem;letter-spacing:0;border-color:rgba(237,231,218,0.6)}
+.ncrt-input:focus{border-color:#ede7da}
+.ncrt-field-label{font-family:var(--font-display);font-weight:600;font-size:.875rem;letter-spacing:.16em;margin:0 0 .5rem}
+.fact{display:flex;flex-direction:column;gap:.25rem;padding-top:1rem;border-top:1px solid rgba(237,231,218,0.25)}
+.policy{display:flex;flex-direction:column;gap:1rem}
+.policy strong{font-weight:600}
+@media (max-width:736px){.wrap{padding-left:1.5rem;padding-right:1.5rem}.t-display{font-size:3.5rem}.t-heading,.ncrt-title-section{font-size:2.25rem}.ncrt-title-tier{font-size:1.875rem}.ncrt-panel-pad{padding:3rem 1.5rem}.ncrt-eyebrow{letter-spacing:.18em}}
+</style>
+</helmet>
+<div class="ncrt-backdrop site-bg" style="min-height: 100vh; color: #ede7da; font-family: Barlow, sans-serif;">
+
+<header class="topbar">
+<div class="wrap" style="padding-top: 1rem; padding-bottom: 1rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 3rem;">
+<a href="Main.dc.html" class="brand">[Organization name]</a>
+<nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 2rem;">
+<a href="#course">Courses</a>
+<a href="NCRT.dc.html">NCRT</a>
+<a href="#location">Location</a>
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" href="Register.dc.html">Register</x-import>
+</nav>
+</div>
+</header>
+
+<section class="wrap" style="padding-top: 7rem; padding-bottom: 5rem; display: flex; flex-direction: column; gap: 1.75rem;">
+<p class="t-subhead">Field courses · Middle Tennessee</p>
+<h1 class="t-display" style="max-width: 56rem;">[Organization name]</h1>
+<p class="t-body" style="max-width: 40rem; font-size: 1.25rem;">Hands-on training in wilderness survival, medicine and ropes, with bushcraft, living off the land and homesteading on the way. Learn to take care of yourself, and the people with you, when help is far away.</p>
+</section>
+
+<div id="course" class="wrap" style="padding-bottom: 5rem;">
+<x-import component-from-global-scope="NCRT.Panel" variant="frosted">
+<div style="display: flex; flex-direction: column; gap: 3rem;">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem 3rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Now teaching · An NCRT course" title="Wilderness Survival Fundamentals" size="section"></x-import>
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" href="Register.dc.html">Register for a Wednesday</x-import>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 1.5rem 3rem;">
+<div class="fact" style="flex: 1 1 12rem;">
+<p class="ncrt-eyebrow">When</p>
+<p class="t-item">Every Wednesday, 1:00–4:00 PM</p>
+</div>
+<div class="fact" style="flex: 1 1 12rem;">
+<p class="ncrt-eyebrow">Where</p>
+<p class="t-item">Middle Tennessee</p>
+</div>
+<div class="fact" style="flex: 1 1 12rem;">
+<p class="ncrt-eyebrow">Cost</p>
+<p class="t-item">[Price] per student</p>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 4rem;">
+<div style="flex: 3 1 26rem; min-width: 0; display: flex; flex-direction: column; gap: 1.25rem;">
+<p class="t-body">Wilderness Survival Fundamentals is a hands-on course designed to teach the core skills needed to survive and remain comfortable in a wilderness emergency. Students will learn how to locate, collect, and purify water, safely build and maintain fires in a variety of conditions, and construct effective shelters to protect themselves from the elements.</p>
+<p class="t-body">Through practical field exercises, participants will gain experience using both modern and improvised methods to meet their basic survival needs. The course emphasizes real-world skills, sound decision-making, and efficient use of available resources.</p>
+<p class="t-body">Whether you’re preparing for outdoor adventures, emergency situations, or simply want to become more self-reliant, this class provides a solid foundation in the essential skills needed for an overnight stay—or an extended period—in the wilderness.</p>
+</div>
+<div style="flex: 2 1 18rem; min-width: 0; display: flex; flex-direction: column; gap: 1.75rem;">
+<div role="img" aria-label="Photo placeholder" style="aspect-ratio: 4 / 3; width: 100%; box-sizing: border-box; padding: 2rem; background: rgba(237, 231, 218, 0.07); display: flex; align-items: center; justify-content: center; text-align: center;">
+<p class="ncrt-eyebrow">Class photo: fire, water or shelter</p>
+</div>
+<p class="t-subhead">What you’ll learn</p>
+<div class="ncrt-list">
+<x-import component-from-global-scope="NCRT.CourseItem" name="Water">Locate, collect and purify water you can safely drink.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Fire">Build and maintain a fire in a variety of conditions.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Shelter">Construct a shelter that protects you from the elements.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Judgment">Make sound decisions and get the most out of what you have, with modern and improvised methods.</x-import>
+</div>
+</div>
+</div>
+</div>
+</x-import>
+</div>
+
+<section class="wrap" style="padding-top: 4rem; padding-bottom: 5rem; display: flex; flex-direction: column; gap: 3rem;">
+<div style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 44rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="More courses" title="Coming soon" size="section"></x-import>
+<p class="t-body">We’re building out a full catalog of field courses. Join the email list to hear when each one opens.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 2.5rem 3rem;">
+<x-import component-from-global-scope="NCRT.CourseItem" name="Wilderness Medical" style="flex: 1 1 15rem; min-width: 0;">Assessment, treatment and patient movement when help is hours away.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Ropes Training" style="flex: 1 1 15rem; min-width: 0;">Knots, anchors, rappelling and hauling systems.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Bushcraft" style="flex: 1 1 15rem; min-width: 0;">Tools, cordage, fire and camp craft using what the woods provide.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Living Off the Land" style="flex: 1 1 15rem; min-width: 0;">Finding, gathering and preparing wild food and water.</x-import>
+<x-import component-from-global-scope="NCRT.CourseItem" name="Homesteading" style="flex: 1 1 15rem; min-width: 0;">Practical skills for growing, raising and preserving your own food.</x-import>
+</div>
+<sc-if value="{{ notJoined }}" hint-placeholder-val="{{ true }}">
+<form onSubmit="{{ join }}" style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 1rem 0.75rem; padding-top: 1rem;">
+<x-import component-from-global-scope="NCRT.TextField" type="email" label="Join the email list" placeholder="Email" value="{{ email }}" on-change="{{ setEmail }}" required="{{ yes }}" style="flex: 0 1 25rem; min-width: 0;"></x-import>
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" type="submit">Join the list</x-import>
+</form>
+</sc-if>
+<sc-if value="{{ joined }}" hint-placeholder-val="{{ false }}">
+<p class="t-item" role="status">You’re on the list. We’ll send class locations and new course dates to {{ email }}.</p>
+</sc-if>
+</section>
+
+<div class="wrap" style="padding-bottom: 5rem;">
+<x-import component-from-global-scope="NCRT.Panel" variant="frosted">
+<div style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: center;">
+<img src="/_blob/02d4dba224e80ce6c550c9343e6fd6ab" alt="An NCRT team searching the woods at night with headlamps" style="flex: 1 1 20rem; min-width: 0; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;">
+<div style="flex: 1 1 24rem; min-width: 0; display: flex; flex-direction: column; gap: 1.5rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Rescue and medical training" title="No Compromise Response Team" size="section"></x-import>
+<p class="t-body">Wilderness Survival Fundamentals is an NCRT course. No Compromise Response Team trains ordinary people in wilderness medicine, rope rescue, patient movement and survival across the Midwest and Southeast.</p>
+<div class="ncrt-btns" style="padding-top: 0.5rem;">
+<x-import component-from-global-scope="NCRT.Button" href="NCRT.dc.html">See NCRT courses</x-import>
+</div>
+</div>
+</div>
+</x-import>
+</div>
+
+<section id="location" class="wrap" style="padding-top: 4rem; padding-bottom: 5rem; display: flex; flex-wrap: wrap; gap: 4rem;">
+<div style="flex: 1 1 22rem; min-width: 0; display: flex; flex-direction: column; gap: 1.5rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Location" title="Middle Tennessee" size="section"></x-import>
+<p class="t-body">We don’t publish the training address. Registered students and our email list receive the exact location by email before class.</p>
+</div>
+<div style="flex: 1 1 22rem; min-width: 0; display: flex; flex-direction: column; gap: 1.5rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Questions" title="Get in touch" size="section"></x-import>
+<p class="t-body">Call or text <a href="tel:">[Phone number]</a>, or email <a href="mailto:">[Email address]</a>. We’re glad to answer questions about the course, the location or what to bring.</p>
+<div class="ncrt-btns">
+<x-import component-from-global-scope="NCRT.Button" class-name="solid" href="tel:">Call</x-import>
+<x-import component-from-global-scope="NCRT.Button" href="mailto:">Email</x-import>
+</div>
+</div>
+</section>
+
+<section id="policies" class="wrap" style="padding-bottom: 5rem;">
+<x-import component-from-global-scope="NCRT.Panel" variant="frosted">
+<div style="display: flex; flex-direction: column; gap: 3rem;">
+<x-import component-from-global-scope="NCRT.SectionHeader" eyebrow="Before you register" title="Refunds and weather" size="section"></x-import>
+<div style="display: flex; flex-wrap: wrap; gap: 3rem 4rem;">
+<div class="policy" style="flex: 1 1 22rem; min-width: 0;">
+<p class="t-subhead">Refunds and rescheduling</p>
+<p class="t-body t-tight"><strong>Change dates for free.</strong> Move to any other Wednesday with at least 48 hours’ notice.</p>
+<p class="t-body t-tight"><strong>Cancel 7 or more days before class:</strong> full refund.</p>
+<p class="t-body t-tight"><strong>Cancel less than 7 days before class:</strong> no cash refund, but you get a credit for a future Wednesday class, good for 12 months.</p>
+<p class="t-body t-tight"><strong>No-shows</strong> without notice receive no refund or credit.</p>
+<p class="t-body t-tight"><strong>If we cancel</strong> for any reason, you choose a full refund or a free move to another Wednesday.</p>
+</div>
+<div class="policy" style="flex: 1 1 22rem; min-width: 0;">
+<p class="t-subhead">Weather</p>
+<p class="t-body t-tight"><strong>Class runs rain or shine.</strong> Learning to stay warm, dry and safe in bad conditions is part of the course, so dress for the forecast.</p>
+<p class="t-body t-tight"><strong>We cancel</strong> for thunderstorms or lightning, any National Weather Service warning for the training area (severe thunderstorm, tornado, flood, winter storm, extreme heat or extreme cold), ice on the roads, or hazards at the site such as flooding or downed trees.</p>
+<p class="t-body t-tight"><strong>We decide by 10:00 AM on class day</strong> and text and email every registered student.</p>
+<p class="t-body t-tight"><strong>If thunder is heard during class,</strong> we stop and take shelter until 30 minutes after the last thunder. If we end class early for safety, you may attend another Wednesday at no charge.</p>
+<p class="t-body t-tight"><strong>Weather cancellations:</strong> choose a full refund or a free move to another Wednesday.</p>
+</div>
+</div>
+</div>
+</x-import>
+</section>
+
+<footer class="topbar" style="border-bottom: 0; border-top: 1px solid rgba(237, 231, 218, 0.18);">
+<div class="wrap" style="padding-top: 2rem; padding-bottom: 2.5rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 3rem;">
+<p class="ncrt-eyebrow" style="margin: 0; color: #ede7da;">© 2026 [Organization name] · Middle Tennessee</p>
+<nav class="nav" aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 0 2rem;">
+<a href="NCRT.dc.html">NCRT</a>
+<a href="#policies">Policies</a>
+<a href="Register.dc.html">Register</a>
+</nav>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":5600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { email: '', joined: false };
+  }
+  renderVals() {
+    return {
+      yes: true,
+      email: this.state.email,
+      joined: this.state.joined,
+      notJoined: !this.state.joined,
+      setEmail: (e) => this.setState({ email: e.target.value }),
+      join: (e) => {
+        e.preventDefault();
+        if (this.state.email.indexOf('@') > 0) this.setState({ joined: true });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,900;1,400;1,900&family=Dela+Gothic+One:ital,wght@0,400;1,400&family=Bai+Jamjuree:ital,wght@0,700;1,700");
+
+/* Grounds */
+body { margin: 0; background: var(--night); color: var(--ink); font-family: var(--font-sans); }
+.ncrt-backdrop { position: relative; background-color: var(--night); background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20viewBox%3D%220%200%20512%20512%22%20width%3D%22512%22%20height%3D%22512%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cfilter%20id%3D%22noise%22%3E%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.875%22%20result%3D%22noise%22%20%2F%3E%20%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220.10546875%200%200%200%200%200%200.109375%200%200%200%200%200%200.16015625%200%200%200%200%200%200.5859375%200%22%20%2F%3E%20%3C%2Ffilter%3E%20%3Crect%20filter%3D%22url%28%23noise%29%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22512%22%20height%3D%22512%22%20fill%3D%22transparent%22%20opacity%3D%221%22%20%2F%3E%3C%2Fsvg%3E"), linear-gradient(var(--scrim), var(--scrim)), var(--ncrt-photo, none); background-size: var(--grain-tile) auto, auto, cover; background-position: center center, 0% 0%, center center; background-repeat: repeat, repeat, no-repeat; }
+.ncrt-panel { position: relative; color: var(--ink); }
+.ncrt-panel-frosted { background-color: var(--panel); background-image: url("data:image/svg+xml;charset=utf8,%3Csvg%20viewBox%3D%220%200%20512%20512%22%20width%3D%22512%22%20height%3D%22512%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cfilter%20id%3D%22noise%22%3E%20%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.875%22%20result%3D%22noise%22%20%2F%3E%20%3CfeColorMatrix%20type%3D%22matrix%22%20values%3D%220.10546875%200%200%200%200%200%200.109375%200%200%200%200%200%200.16015625%200%200%200%200%200%200.5859375%200%22%20%2F%3E%20%3C%2Ffilter%3E%20%3Crect%20filter%3D%22url%28%23noise%29%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22512%22%20height%3D%22512%22%20fill%3D%22transparent%22%20opacity%3D%221%22%20%2F%3E%3C%2Fsvg%3E"); background-size: var(--grain-tile) auto; background-position: center center; background-repeat: repeat; -webkit-backdrop-filter: blur(var(--blur-panel)); backdrop-filter: blur(var(--blur-panel)); }
+.ncrt-panel-clear { background-color: transparent; }
+.ncrt-panel-pad { padding: var(--gutter-section); }
+
+/* Button: 3px white outline, square, tracked uppercase Inter */
+.ncrt-btns { display: flex; flex-flow: wrap; gap: var(--space-buttons); align-items: center; }
+.ncrt-btn { display: inline-flex; align-items: center; box-sizing: border-box; height: var(--control-height); padding: 0 var(--button-pad-end) 0 var(--button-pad-start); border: var(--border-button) solid var(--line); border-radius: var(--radius-none); background: transparent; color: var(--ink); font-family: var(--font-sans); font-size: 0.75rem; font-weight: 400; letter-spacing: 0.4rem; text-transform: uppercase; text-decoration: none; white-space: nowrap; cursor: pointer; transition: transform 0.25s, color 0.25s, background-color 0.25s, border-color 0.25s; }
+.ncrt-btn:hover { transform: scale(1.0425); }
+.ncrt-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.ncrt-btn-label { text-align: left; }
+.ncrt-btn .ncrt-icon { display: block; flex: none; width: 1.25em; min-width: 18px; height: 100%; margin-left: 0.5em; margin-right: calc(-0.125em + 0.4rem); fill: currentColor; pointer-events: none; }
+
+/* Fields: 1px white outline, transparent, square */
+.ncrt-field { display: flex; flex-direction: column; max-width: 100%; }
+.ncrt-field-label { margin: var(--space-label) 0 0.75rem; font-family: var(--font-display); font-weight: 700; font-size: 1rem; line-height: 1.5; text-transform: uppercase; color: var(--ink); }
+.ncrt-input { display: block; box-sizing: border-box; width: 100%; height: var(--control-height); padding: 0 1.4875rem; background: transparent; border: var(--border-input) solid var(--line); border-radius: var(--radius-none); outline: 0; color: var(--ink); font-family: var(--font-sans); font-size: 1rem; font-weight: 400; letter-spacing: 0.075rem; line-height: calc(var(--control-height) - 2px); transition: border-color 0.25s; }
+textarea.ncrt-input { height: var(--textarea-height); padding: 1.09375rem 1.4875rem 1.4875rem; line-height: 2.25; resize: vertical; }
+.ncrt-input::placeholder { color: var(--ink-placeholder); opacity: 1; }
+.ncrt-input:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+.ncrt-form { display: flex; flex-direction: column; gap: var(--space-field); width: var(--form-width); max-width: 100%; }
+
+/* Headings */
+.ncrt-eyebrow { margin: 0; font-family: var(--font-sans); font-size: 0.75rem; font-weight: 400; line-height: 1.625; letter-spacing: 0.4rem; text-transform: uppercase; color: var(--ink); }
+.ncrt-eyebrow mark { background: transparent; color: var(--signal); }
+.ncrt-title { margin: 0; font-family: var(--font-gothic); font-weight: 400; line-height: 1.5; letter-spacing: 0.5rem; text-transform: uppercase; color: var(--ink); }
+.ncrt-title-section { font-size: 2rem; }
+.ncrt-title-tier { font-size: 1.75rem; }
+.ncrt-section-header { display: flex; flex-direction: column; gap: 0.5rem; }
+
+/* Course item */
+.ncrt-course { margin: 0; }
+.ncrt-course-name { margin: 0; font-family: var(--font-sans); font-size: 1rem; font-weight: 900; line-height: 2.25; letter-spacing: 0.075rem; color: var(--ink); }
+.ncrt-course-desc { margin: 0; font-family: var(--font-sans); font-size: 0.75rem; font-weight: 400; line-height: 2.25; letter-spacing: 0.075rem; color: var(--ink); }
+.ncrt-course a, .ncrt-text a { color: var(--signal); text-decoration: none; transition: color 0.25s; }
+.ncrt-course a:hover, .ncrt-text a:hover { color: var(--ink-muted); }
+.ncrt-list { display: flex; flex-direction: column; gap: var(--space-stack); }
+
+@media (max-width: 736px) {
+  .ncrt-btn { font-size: 1rem; }
+  .ncrt-eyebrow { letter-spacing: 0.35rem; }
+  .ncrt-title { letter-spacing: 0.4375rem; }
+  .ncrt-title-section, .ncrt-title-tier { font-size: 1.5rem; }
+  .ncrt-course-name { letter-spacing: 0.065625rem; }
+  .ncrt-course-desc { font-size: 1rem; letter-spacing: 0.065625rem; }
+  .ncrt-panel-pad { padding: 4rem 3rem; }
+}

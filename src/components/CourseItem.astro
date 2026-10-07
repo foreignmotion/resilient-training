@@ -1,0 +1,9 @@
+---
+interface Props { name: string; level?: 3 | 4; class?: string; style?: string }
+const { name, level = 3, class: cls, style } = Astro.props;
+const H: any = `h${level}`;
+---
+<div class:list={['course', cls]} style={style}>
+  <H class="course-name">{name}</H>
+  {Astro.slots.has('default') && <p class="course-desc"><slot /></p>}
+</div>

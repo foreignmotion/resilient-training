@@ -1,0 +1,9 @@
+---
+interface Props { eyebrow?: string; title: string; size?: 'section' | 'tier'; level?: 1 | 2 | 3; class?: string }
+const { eyebrow, title, size = 'tier', level = 2, class: cls } = Astro.props;
+const H: any = `h${level}`;
+---
+<header class:list={['section-header', cls]}>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <H class:list={['title', size === 'section' ? 'title-section' : 'title-tier']}>{title}</H>
+</header>

@@ -1,0 +1,178 @@
+---
+import { Picture } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Panel from '../components/Panel.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CourseItem from '../components/CourseItem.astro';
+import Fact from '../components/Fact.astro';
+import TextField from '../components/TextField.astro';
+import Policies from '../components/Policies.astro';
+import { course, homeClassPhoto, mailtoHref, priceLabel, site, telHref } from '../../shared/config.ts';
+import nightSearch from '../assets/images/bg_night-search-headlamps.jpg';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/*.{jpg,jpeg,png,webp}', { eager: true });
+const classPhoto = homeClassPhoto ? images[`../assets/images/${homeClassPhoto.file}`]?.default : undefined;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'LocalBusiness',
+      '@id': `${site.url}/#org`,
+      name: site.orgName,
+      url: site.url,
+      areaServed: { '@type': 'AdministrativeArea', name: site.region },
+      ...(site.phoneTel ? { telephone: site.phoneTel } : {}),
+      ...(site.email.includes('@') ? { email: site.email } : {}),
+    },
+    {
+      '@type': 'Course',
+      name: course.name,
+      description: 'A hands-on course teaching the core skills to survive and stay comfortable in a wilderness emergency: water, fire, shelter and sound judgment.',
+      provider: { '@id': `${site.url}/#org` },
+      hasCourseInstance: {
+        '@type': 'CourseInstance',
+        courseMode: 'onsite',
+        courseSchedule: { '@type': 'Schedule', byDay: 'https://schema.org/Wednesday', repeatFrequency: 'P1W', startTime: '13:00', endTime: '16:00' },
+        location: { '@type': 'Place', name: site.region },
+      },
+    },
+  ],
+};
+---
+<Layout
+  title={`${site.orgName}: Wilderness survival, medical and ropes training in ${site.region}`}
+  description={`Hands-on field courses in wilderness survival, medicine and ropes in ${site.region}. ${course.name} runs every Wednesday, 1:00–4:00 PM.`}
+  current="home"
+  jsonLd={jsonLd}
+>
+  <section class="wrap hero reveal">
+    <p class="t-subhead">Field courses · Middle Tennessee</p>
+    <h1 class="t-display">{site.orgName}</h1>
+    <p class="t-body t-lede" style="max-width: 40rem;">Hands-on training in wilderness survival, medicine and ropes, with bushcraft, living off the land and homesteading on the way. Learn to take care of yourself, and the people with you, when help is far away.</p>
+  </section>
+
+  <div id="course" class="wrap anchor" style="padding-bottom: 5rem;">
+    <Panel as="section" aria-labelledby="course-title">
+      <div class="stack-xl">
+        <div class="split-head">
+          <header class="section-header">
+            <p class="eyebrow">Now teaching · An NCRT course</p>
+            <h2 id="course-title" class="title title-section">{course.name}</h2>
+          </header>
+          <Button variant="solid" href="/register/">Register for a Wednesday</Button>
+        </div>
+        <div class="facts">
+          <Fact label="When" style="flex: 1 1 12rem;">Every Wednesday, {course.timeLabel}</Fact>
+          <Fact label="Where" style="flex: 1 1 12rem;">{site.region}</Fact>
+          <Fact label="Cost" style="flex: 1 1 12rem;">{priceLabel()} per student</Fact>
+        </div>
+        <div class="cols" style="gap: 4rem;">
+          <div class="stack" style="flex: 3 1 26rem;">
+            <p class="t-body">Wilderness Survival Fundamentals is a hands-on course designed to teach the core skills needed to survive and remain comfortable in a wilderness emergency. Students will learn how to locate, collect, and purify water, safely build and maintain fires in a variety of conditions, and construct effective shelters to protect themselves from the elements.</p>
+            <p class="t-body">Through practical field exercises, participants will gain experience using both modern and improvised methods to meet their basic survival needs. The course emphasizes real-world skills, sound decision-making, and efficient use of available resources.</p>
+            <p class="t-body">Whether you’re preparing for outdoor adventures, emergency situations, or simply want to become more self-reliant, this class provides a solid foundation in the essential skills needed for an overnight stay—or an extended period—in the wilderness.</p>
+          </div>
+          <div class="stack-lg" style="flex: 2 1 18rem;">
+            {classPhoto && homeClassPhoto ? (
+              <Picture src={classPhoto} formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 26rem" alt={homeClassPhoto.alt} class="media" />
+            ) : (
+              <div class="photo-slot" role="img" aria-label="Photo placeholder">
+                <p class="eyebrow">Class photo: fire, water or shelter</p>
+              </div>
+            )}
+            <h3 class="t-subhead">What you’ll learn</h3>
+            <div class="list">
+              <CourseItem name="Water" level={4}>Locate, collect and purify water you can safely drink.</CourseItem>
+              <CourseItem name="Fire" level={4}>Build and maintain a fire in a variety of conditions.</CourseItem>
+              <CourseItem name="Shelter" level={4}>Construct a shelter that protects you from the elements.</CourseItem>
+              <CourseItem name="Judgment" level={4}>Make sound decisions and get the most out of what you have, with modern and improvised methods.</CourseItem>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Panel>
+  </div>
+
+  <section id="list" class="wrap stack-xl anchor" style="padding-top: 4rem; padding-bottom: 5rem;" aria-labelledby="soon-title">
+    <div class="stack" style="gap: 1.5rem; max-width: 44rem;">
+      <header class="section-header">
+        <p class="eyebrow">More courses</p>
+        <h2 id="soon-title" class="title title-section">Coming soon</h2>
+      </header>
+      <p class="t-body">We’re building out a full catalog of field courses. Join the email list to hear when each one opens.</p>
+    </div>
+    <div class="catalog">
+      <CourseItem name="Wilderness Medical">Assessment, treatment and patient movement when help is hours away.</CourseItem>
+      <CourseItem name="Ropes Training">Knots, anchors, rappelling and hauling systems.</CourseItem>
+      <CourseItem name="Bushcraft">Tools, cordage, fire and camp craft using what the woods provide.</CourseItem>
+      <CourseItem name="Living Off the Land">Finding, gathering and preparing wild food and water.</CourseItem>
+      <CourseItem name="Homesteading">Practical skills for growing, raising and preserving your own food.</CourseItem>
+    </div>
+    <div data-form-root>
+      <form class="inline-form" action="/api/subscribe" method="post" data-ajax novalidate>
+        <TextField type="email" name="email" label="Join the email list" placeholder="Email" autocomplete="email" required style="flex: 0 1 25rem;" />
+        <div class="honeypot" aria-hidden="true"><label>Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+        <input type="hidden" name="source" value="home" />
+        <Button variant="solid" type="submit">Join the list</Button>
+        <p class="t-body t-tight form-error" role="alert" data-error hidden></p>
+      </form>
+      <p class="t-item status" role="status" data-success hidden>You’re on the list. We’ll send class locations and new course dates to <span data-echo="email"></span>.</p>
+    </div>
+  </section>
+
+  <div class="wrap" style="padding-bottom: 5rem;">
+    <Panel as="section" aria-labelledby="ncrt-title">
+      <div class="cols" style="gap: 4rem; align-items: center;">
+        <Picture src={nightSearch} formats={['avif', 'webp']} widths={[480, 800, 1100]} sizes="(max-width: 736px) 100vw, 28rem" alt="An NCRT team searching the woods at night with headlamps" class="media" style="flex: 1 1 20rem; aspect-ratio: 4 / 3;" loading="lazy" />
+        <div class="stack" style="flex: 1 1 24rem; gap: 1.5rem;">
+          <header class="section-header">
+            <p class="eyebrow">Rescue and medical training</p>
+            <h2 id="ncrt-title" class="title title-section">No Compromise Response Team</h2>
+          </header>
+          <p class="t-body">Wilderness Survival Fundamentals is an NCRT course. No Compromise Response Team trains ordinary people in wilderness medicine, rope rescue, patient movement and survival across the Midwest and Southeast.</p>
+          <div class="btns" style="padding-top: 0.5rem;">
+            <Button href="/ncrt/">See NCRT courses</Button>
+          </div>
+        </div>
+      </div>
+    </Panel>
+  </div>
+
+  <section id="location" class="wrap cols anchor" style="padding-top: 4rem; padding-bottom: 5rem; gap: 4rem;">
+    <div class="stack" style="flex: 1 1 22rem; gap: 1.5rem;">
+      <SectionHeader eyebrow="Location" title={site.region} size="section" />
+      <p class="t-body">We don’t publish the training address. Registered students and our email list receive the exact location by email before class.</p>
+    </div>
+    <div class="stack" style="flex: 1 1 22rem; gap: 1.5rem;">
+      <SectionHeader eyebrow="Questions" title="Get in touch" size="section" />
+      <p class="t-body">Call or text <a href={telHref()}>{site.phoneDisplay}</a>, or email <a href={mailtoHref()}>{site.email}</a>. We’re glad to answer questions about the course, the location or what to bring.</p>
+      <div class="btns">
+        <Button variant="solid" href={telHref()}>Call</Button>
+        <Button href={mailtoHref()}>Email</Button>
+      </div>
+    </div>
+  </section>
+
+  <section id="policies" class="wrap anchor" style="padding-bottom: 5rem;">
+    <Panel>
+      <div class="stack-xl">
+        <SectionHeader eyebrow="Before you register" title="Refunds and weather" size="section" />
+        <Policies />
+      </div>
+    </Panel>
+  </section>
+</Layout>
+
+<script>
+  import { enhanceForms } from '../scripts/forms.ts';
+  enhanceForms();
+  // No-JS fallback lands back here with ?joined=1.
+  if (new URLSearchParams(location.search).get('joined') === '1') {
+    document.querySelector<HTMLFormElement>('#list form')!.hidden = true;
+    const ok = document.querySelector<HTMLElement>('#list [data-success]')!;
+    ok.textContent = 'You’re on the list. We’ll send class locations and new course dates by email.';
+    ok.hidden = false;
+  }
+</script>
