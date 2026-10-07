@@ -5,6 +5,5 @@ compatibility_date = "2026-10-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "training-db"
-# Create with: npx wrangler d1 create training-db  — then paste the id here.
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "2ffd2245-417b-44c4-8ef6-9e998e37249e"
 migrations_dir = "migrations"
