@@ -50,7 +50,10 @@ export const legal = {
 } as const;
 
 /** Optional home-page class photo (fire, water or shelter). Drop a file in src/assets/images and set its name. */
-export const homeClassPhoto: { file: string; alt: string } | null = null;
+export const homeClassPhoto: { file: string; alt: string } | null = {
+  file: 'image03_river-ropes-dusk.jpg',
+  alt: 'Two people on ropes under a bridge at dusk, headlamps on',
+};
 
 export const hasPrice = () => course.priceCents > 0;
 

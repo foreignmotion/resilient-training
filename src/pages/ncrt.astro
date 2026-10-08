@@ -16,6 +16,8 @@ import founder from '../assets/images/image04_founder-tripod-litter-raise.jpg';
 const photoProps = { formats: ['avif', 'webp'] as ('avif' | 'webp')[], widths: [420, 640, 840], sizes: '(max-width: 736px) 100vw, 26rem', loading: 'lazy' as const, class: 'photo', pictureAttributes: { class: 'photo-frame' } };
 const multiDayNote = '(Multi-day courses often end with realistic scenarios and nighttime training. All multi-day courses involve camping in a wilderness setting, and have a significantly more extensive pack list than single day courses.)';
 const videoId = 'SbS8AjeXPLM';
+/** The 1-, 2- and 3-4-day course example sections are hidden for now. Set true to show them again. */
+const showCourseExamples = false;
 ---
 <Layout
   title="No Compromise Response Team: rescue and survival courses"
@@ -70,6 +72,8 @@ const videoId = 'SbS8AjeXPLM';
     </div>
   </section>
 
+  {showCourseExamples && (
+  <>
   <section class="panel panel-frosted sec card" aria-labelledby="one-day">
     <div class="tier">
       <div class="tier-photos">
@@ -142,6 +146,8 @@ const videoId = 'SbS8AjeXPLM';
       </div>
     </div>
   </section>
+  </>
+  )}
 
   <section class="wrap cols" style="padding-top: 3rem; padding-bottom: 5rem; gap: 5rem; align-items: center;" aria-labelledby="founder">
     <div class="stack" style="flex: 1 1 26rem; gap: 2rem;">
