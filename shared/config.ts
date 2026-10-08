@@ -7,7 +7,7 @@
  */
 export const site = {
   /** D1: organization name. */
-  orgName: '[Organization name]',
+  orgName: 'Resilient Skills',
   /** D1: production origin, used for Stripe return URLs, canonical links and emails. No trailing slash. */
   url: 'https://example.com',
   /** D2: shown on the site and in emails. */
@@ -21,7 +21,7 @@ export const site = {
   /** Optional NCRT contact copied on NCRT interest messages. */
   ncrtEmail: '',
   /** "From" address for transactional email; must be on a domain verified in Resend. */
-  fromEmail: '[Organization name] <hello@example.com>',
+  fromEmail: 'Resilient Skills <hello@example.com>',
   region: 'Middle Tennessee',
 } as const;
 

@@ -1,4 +1,4 @@
-# [Organization name] training site
+# Resilient Skills training site
 
 Marketing + registration site for a Middle Tennessee field-training organization, built
 from the approved prototype in `docs/prototype/` per `docs/SPEC.md`.
