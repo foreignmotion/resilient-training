@@ -9,7 +9,8 @@ export const onRequestPost: Fn = async ({ request, env }) => {
   if (!sameOrigin(request)) return json({ error: 'Bad origin.' }, 403);
   const body = await readBody(request);
   if (!body) return json({ error: 'Invalid request.' }, 400);
-  const done = () => (wantsJson(request) ? json({ ok: true }) : Response.redirect(new URL('/ncrt/?sent=1#contact', request.url).href, 303));
+  const fromHome = str(body.source, 20) === 'home';
+  const done = () => (wantsJson(request) ? json({ ok: true }) : Response.redirect(new URL(fromHome ? '/?sent=1#contact' : '/ncrt/?sent=1#contact', request.url).href, 303));
   if (str(body.company)) return done();
 
   const firstName = str(body.firstName, 100);
@@ -23,8 +24,8 @@ export const onRequestPost: Fn = async ({ request, env }) => {
   try {
     await sendEmail(env, {
       to: [site.ownerEmail, site.ncrtEmail].filter(Boolean),
-      subject: `NCRT course interest: ${firstName} ${lastName}`,
-      text: `${firstName} ${lastName} <${email}> is interested in NCRT courses.\n\nWhich course(s):\n${message}\n\nSent from the NCRT page on ${site.orgName}'s website.`,
+      subject: `${fromHome ? 'Course interest' : 'NCRT course interest'}: ${firstName} ${lastName}`,
+      text: `${firstName} ${lastName} <${email}> is interested in ${fromHome ? 'a course' : 'NCRT courses'}.\n\nWhich course(s):\n${message}\n\nSent from the ${fromHome ? 'home' : 'Team (NCRT)'} page on ${site.orgName}'s website.`,
       replyTo: email,
     });
   } catch (err) {

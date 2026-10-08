@@ -1,0 +1,45 @@
+---
+/**
+ * Course-interest form, shared by the home page and the Team (NCRT) page.
+ * Posts to /api/ncrt-interest; `source` tells the owner which page it came from.
+ * `wide` lays the fields out across the full content width.
+ */
+import Button from './Button.astro';
+import TextField from './TextField.astro';
+
+interface Props { source: 'home' | 'ncrt'; wide?: boolean }
+const { source, wide = false } = Astro.props;
+---
+<div class="stack" style="gap: 2rem;" data-form-root>
+  <form class:list={['form', wide && 'form-wide']} action="/api/ncrt-interest" method="post" data-ajax novalidate>
+    <TextField name="firstName" placeholder="First Name" aria-label="First Name" autocomplete="given-name" required class="f-first" />
+    <TextField name="lastName" placeholder="Last Name" aria-label="Last Name" autocomplete="family-name" required class="f-last" />
+    <TextField type="email" name="email" placeholder="Email" aria-label="Email" autocomplete="email" required class="f-email" />
+    <TextField multiline name="message" placeholder="Which course(s) are you interested in?" aria-label="Which course(s) are you interested in?" required maxlength="4000" class="f-message" />
+    <input type="hidden" name="source" value={source} />
+    <div class="honeypot" aria-hidden="true"><label>Leave this empty <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></div>
+    <p class="t-body t-tight form-error" role="alert" data-error hidden></p>
+    <div class="btns" style="padding-top: 1rem;"><Button variant="solid" type="submit">Send</Button></div>
+  </form>
+  <p class="t-item status" role="status" data-success hidden>Thank you. Your message has been sent.</p>
+</div>
+
+<style>
+  .form-wide {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      'first last email'
+      'message message message';
+    gap: 1rem;
+  }
+  .form-wide :global(.f-first) { grid-area: first; }
+  .form-wide :global(.f-last) { grid-area: last; }
+  .form-wide :global(.f-email) { grid-area: email; }
+  .form-wide :global(.f-message) { grid-area: message; }
+  .form-wide > :global(:not(.field)) { grid-column: 1 / -1; }
+  @media (max-width: 736px) {
+    .form-wide { grid-template-columns: 1fr; grid-template-areas: 'first' 'last' 'email' 'message'; }
+  }
+</style>

@@ -8,7 +8,8 @@ import CourseItem from '../components/CourseItem.astro';
 import Fact from '../components/Fact.astro';
 import TextField from '../components/TextField.astro';
 import Policies from '../components/Policies.astro';
-import { course, homeClassPhoto, mailtoHref, priceLabel, site, telHref } from '../../shared/config.ts';
+import ContactForm from '../components/ContactForm.astro';
+import { course, homeClassPhoto, priceLabel, site } from '../../shared/config.ts';
 import nightSearch from '../assets/images/bg_night-search-headlamps.jpg';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/*.{jpg,jpeg,png,webp}', { eager: true });
@@ -49,7 +50,10 @@ const jsonLd = {
 >
   <section class="wrap hero reveal">
     <p class="t-subhead">Trainings across the Southeast</p>
-    <h1 class="t-display lockup">{site.orgName}<span class="lockup-sub">{site.orgSubhead}</span></h1>
+    <h1 class="t-display lockup">
+      <span class="lockup-name">{site.orgName.split(' ').map((word) => <span>{word}</span>)}</span>
+      <span class="lockup-sub">{site.orgSubhead}</span>
+    </h1>
     <p class="t-body t-lede" style="max-width: 40rem;">Hands-on training courses in wilderness survival, medicine and ropes, bushcraft, &amp; living off the land. Learn to take care of yourself, and the people with you, when help is far away.</p>
   </section>
 
@@ -140,19 +144,12 @@ const jsonLd = {
     </Panel>
   </div>
 
-  <section id="location" class="wrap cols anchor" style="padding-top: 4rem; padding-bottom: 5rem; gap: 4rem;">
-    <div class="stack" style="flex: 1 1 22rem; gap: 1.5rem;">
-      <SectionHeader eyebrow="Location" title={site.region} size="section" />
-      <p class="t-body">We don’t publish the training address. Registered students and our email list receive the exact location by email before class.</p>
-    </div>
-    <div class="stack" style="flex: 1 1 22rem; gap: 1.5rem;">
+  <section id="contact" class="wrap stack-xl anchor" style="padding-top: 4rem; padding-bottom: 5rem;">
+    <div class="stack" style="gap: 1.5rem; max-width: 44rem;">
       <SectionHeader eyebrow="Questions" title="Get in touch" size="section" />
-      <p class="t-body">Call or text <a href={telHref()}>{site.phoneDisplay}</a>, or email <a href={mailtoHref()}>{site.email}</a>. We’re glad to answer questions about the course, the location or what to bring.</p>
-      <div class="btns">
-        <Button variant="solid" href={telHref()}>Call</Button>
-        <Button href={mailtoHref()}>Email</Button>
-      </div>
+      <p class="t-body t-tight">Fill out this form if you are interested in taking a course. You aren't committing to anything - just expressing interest.</p>
     </div>
+    <ContactForm source="home" wide />
   </section>
 
   <section id="policies" class="wrap anchor" style="padding-bottom: 5rem;">
