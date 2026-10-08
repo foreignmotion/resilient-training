@@ -207,11 +207,14 @@ textarea.input { min-height: var(--textarea-height); padding: 1rem 1.25rem; line
 }
 @keyframes rise { from { opacity: 0; transform: translateY(0.75rem); } to { opacity: 1; transform: none; } }
 
+/* Home hero eyebrow, scaled up to sit with the oversized name. */
+.hero-eyebrow { font-size: clamp(1.125rem, 0.75rem + 1.5vw, 1.875rem); letter-spacing: 0.2em; }
+
 /* Home headline: org name with its subhead set as one heading. */
 .lockup { display: flex; flex-direction: column; gap: 0.2em; }
 /* Each word of the name on its own line, set much larger than the standard display size. */
 .lockup-name { display: flex; flex-direction: column; font-size: clamp(4.5rem, 0.5rem + 17vw, 16rem); line-height: 0.84; letter-spacing: 0; }
-.lockup-sub { font-weight: 600; font-size: clamp(1.25rem, 0.75rem + 1.6vw, 2rem); line-height: 1; letter-spacing: 0.32em; color: var(--signal); }
+.lockup-sub { font-weight: 600; font-size: clamp(1.75rem, 0.5rem + 4vw, 4.5rem); line-height: 1; letter-spacing: 0.28em; color: var(--signal); }
 
 /* ---------- Layout utilities ---------- */
 .hero { padding-top: 7rem; padding-bottom: 5rem; display: flex; flex-direction: column; gap: 1.75rem; }
