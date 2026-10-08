@@ -19,6 +19,8 @@
   --tint-hover: rgb(237 231 218 / 0.1);
   --tint-slot: rgb(237 231 218 / 0.07);
 
+  /* Headings: NCRT's own display face (ncrteam.com). Wide, single weight. */
+  --font-heading: 'Dela Gothic One', 'Arial Black', sans-serif;
   --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
   --font-sans: Barlow, system-ui, sans-serif;
 
@@ -104,8 +106,8 @@ a:hover { color: var(--ink); }
 .footer .eyebrow { color: var(--ink); }
 
 /* ---------- Type ---------- */
-.t-display { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(2.75rem, 1rem + 7.5vw, 6.5rem); line-height: 0.92; letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink); text-wrap: balance; overflow-wrap: break-word; }
-.t-heading { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 3rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; color: var(--ink); text-wrap: balance; }
+.t-display { margin: 0; font-family: var(--font-heading); font-weight: 400; font-size: clamp(1.8rem, 0.5rem + 5.5vw, 4.5rem); line-height: 1.02; letter-spacing: 0.02em; text-transform: uppercase; color: var(--ink); text-wrap: balance; overflow-wrap: break-word; }
+.t-heading { margin: 0; font-family: var(--font-heading); font-weight: 400; font-size: clamp(1.25rem, 0.4rem + 3.6vw, 2.25rem); line-height: 1.1; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); text-wrap: balance; }
 .t-body { margin: 0; font-family: var(--font-sans); font-size: 1.125rem; line-height: 1.75; color: var(--ink); max-width: 70ch; }
 .t-lede { font-size: 1.25rem; }
 .t-tight { line-height: 1.65; }
@@ -116,13 +118,11 @@ a:hover { color: var(--ink); }
 .t-body strong, .policy strong, .waiver strong { font-weight: 600; }
 
 .section-header { display: flex; flex-direction: column; gap: 0.75rem; }
-.title { margin: 0; font-family: var(--font-display); font-weight: 700; letter-spacing: 0.02em; line-height: 1; text-transform: uppercase; color: var(--ink); text-wrap: balance; }
-.title-section { font-size: 3rem; }
-.title-tier { font-size: 2.25rem; }
+.title { margin: 0; font-family: var(--font-heading); font-weight: 400; letter-spacing: 0.04em; line-height: 1.1; text-transform: uppercase; color: var(--ink); text-wrap: balance; }
+.title-section { font-size: clamp(1.25rem, 0.4rem + 3.6vw, 2.25rem); }
+.title-tier { font-size: clamp(1.125rem, 0.4rem + 3vw, 1.75rem); }
 
 @media (max-width: 736px) {
-  .t-heading, .title-section { font-size: 2.25rem; }
-  .title-tier { font-size: 1.875rem; }
   .eyebrow { letter-spacing: 0.18em; }
 }
 
@@ -211,10 +211,11 @@ textarea.input { min-height: var(--textarea-height); padding: 1rem 1.25rem; line
 .hero-eyebrow { font-size: clamp(1.125rem, 0.75rem + 1.5vw, 1.875rem); letter-spacing: 0.2em; }
 
 /* Home headline: org name with its subhead set as one heading. */
-.lockup { display: flex; flex-direction: column; gap: 0.2em; }
+.lockup { display: flex; flex-direction: column; gap: 0.2em; container-type: inline-size; }
 /* Each word of the name on its own line, set much larger than the standard display size. */
-.lockup-name { display: flex; flex-direction: column; font-size: clamp(4.5rem, 0.5rem + 17vw, 16rem); line-height: 0.84; letter-spacing: 0; }
-.lockup-sub { font-weight: 600; font-size: clamp(1.75rem, 0.5rem + 4vw, 4.5rem); line-height: 1; letter-spacing: 0.28em; color: var(--signal); }
+/* Sized from the container so the longest word ("Resilient", ~7.5em wide in Dela Gothic One) fills the line. */
+.lockup-name { display: flex; flex-direction: column; font-size: calc(100cqi / 7.65); line-height: 1; letter-spacing: 0; }
+.lockup-sub { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.75rem, 0.5rem + 4vw, 4.5rem); line-height: 1; letter-spacing: 0.28em; color: var(--signal); }
 
 /* ---------- Layout utilities ---------- */
 .hero { padding-top: 7rem; padding-bottom: 5rem; display: flex; flex-direction: column; gap: 1.75rem; }
