@@ -206,6 +206,10 @@ textarea.input { min-height: var(--textarea-height); padding: 1rem 1.25rem; line
 }
 @keyframes rise { from { opacity: 0; transform: translateY(0.75rem); } to { opacity: 1; transform: none; } }
 
+/* Home headline: org name with its subhead set as one heading. */
+.lockup { display: flex; flex-direction: column; gap: 0.25em; }
+.lockup-sub { font-weight: 600; font-size: clamp(1.25rem, 0.75rem + 1.6vw, 2rem); line-height: 1; letter-spacing: 0.32em; color: var(--signal); }
+
 /* ---------- Layout utilities ---------- */
 .hero { padding-top: 7rem; padding-bottom: 5rem; display: flex; flex-direction: column; gap: 1.75rem; }
 @media (max-width: 736px) { .hero { padding-top: 4.5rem; padding-bottom: 3.5rem; } }

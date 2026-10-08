@@ -8,6 +8,8 @@
 export const site = {
   /** D1: organization name. */
   orgName: 'Resilient Skills',
+  /** Line set under the name in the home-page headline. */
+  orgSubhead: 'Training Co',
   /** D1: production origin, used for Stripe return URLs, canonical links and emails. No trailing slash. */
   url: 'https://example.com',
   /** D2: shown on the site and in emails. */
