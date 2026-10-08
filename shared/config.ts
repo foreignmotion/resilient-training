@@ -11,7 +11,7 @@ export const site = {
   /** Line set under the name in the home-page headline. */
   orgSubhead: 'Training Co',
   /** D1: production origin, used for Stripe return URLs, canonical links and emails. No trailing slash. */
-  url: 'https://example.com',
+  url: 'https://buildresilientskills.com',
   /** D2: shown on the site and in emails. */
   phoneDisplay: '[Phone number]',
   /** D2: digits for tel: links, e.g. '+16155550100'. Leave empty until known. */
@@ -23,7 +23,7 @@ export const site = {
   /** Optional NCRT contact copied on NCRT interest messages. */
   ncrtEmail: '',
   /** "From" address for transactional email; must be on a domain verified in Resend. */
-  fromEmail: 'Resilient Skills <hello@example.com>',
+  fromEmail: 'Resilient Skills <hello@buildresilientskills.com>',
   region: 'Middle Tennessee',
 } as const;
 

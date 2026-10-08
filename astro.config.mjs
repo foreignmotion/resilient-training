@@ -3,7 +3,7 @@ import preact from '@astrojs/preact';
 
 export default defineConfig({
   // Keep in sync with site.url in shared/config.ts.
-  site: 'https://example.com',
+  site: 'https://buildresilientskills.com',
   output: 'static',
   integrations: [preact()],
   build: { format: 'directory' },
