@@ -20,7 +20,7 @@ Physical scene: someone on a phone in the evening, deciding whether to bring the
 Ember on night is about 6.7:1. Never use ember for long body text.
 
 ## Typography
-- Headings (`.t-display`, `.t-heading`, `.title`, home name lockup): **Dela Gothic One** 400, uppercase, matching ncrteam.com. It is very wide (about 2× Barlow Condensed), so sizes are fluid and checked so the longest word fits at 320px.
+- Headings (`.t-display`, `.t-heading`, `.title`, home name lockup, navbar wordmark): **Dela Gothic One** 400, uppercase, matching ncrteam.com. It is very wide (about 2× Barlow Condensed), so sizes are fluid and checked so the longest word fits at 320px.
 - Home name lockup: each word on its own line, sized from its container (`100cqi / 7.65`) so "Resilient" fills the content width; "Training Co" subhead in Barlow Condensed, ember, tracked.
 - Labels, eyebrows, nav, buttons, course names: **Barlow Condensed** 600/700, uppercase, tracked (0.16–0.22em).
 - Body: **Barlow** 400/500/600, 1.125rem, line-height 1.75 (1.65 tight).
