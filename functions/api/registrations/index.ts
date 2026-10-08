@@ -1,4 +1,4 @@
-import { course, hasPrice, legal } from '../../../shared/config.ts';
+import { course, hasPrice, legal, site } from '../../../shared/config.ts';
 import { formatClassDate, upcomingClassDates } from '../../../shared/dates.ts';
 import { sha256Hex, waiverText } from '../../../shared/legal.ts';
 import { isMinor, sanitize, signerFor, validateDetails, validateReview, validateWaiver } from '../../../shared/registration.ts';
@@ -15,6 +15,9 @@ import { stripeRequest } from '../../_lib/stripe.ts';
 export const onRequestPost: Fn = async ({ request, env }) => {
   if (!sameOrigin(request)) return json({ error: 'Bad origin.' }, 403);
   if (!hasPrice()) return json({ error: 'Online registration opens once the course price is set.' }, 503);
+  if (!env.STRIPE_SECRET_KEY) {
+    return json({ error: `Online payment isn’t open yet. To register now, call or text ${site.phoneDisplay} or email ${site.email}.` }, 503);
+  }
 
   const input = sanitize(await request.json().catch(() => null));
   if (!input) return json({ error: 'Invalid request.' }, 400);

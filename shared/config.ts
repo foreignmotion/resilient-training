@@ -30,7 +30,7 @@ export const site = {
 export const course = {
   name: 'Wilderness Survival Fundamentals',
   /** D3: price per student in cents. 0 shows "[Price]" and blocks checkout. */
-  priceCents: 0,
+  priceCents: 3000,
   currency: 'usd',
   timeLabel: '1:00–4:00 PM',
   /** Class weekday, 0 = Sunday. */
