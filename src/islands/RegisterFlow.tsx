@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { ComponentChildren } from 'preact';
-import { course, formatMoney, hasPrice, mailtoHref, priceLabel, site, telHref } from '../../shared/config.ts';
+import { course, formatMoney, hasPrice, mailtoHref, priceLabel, site } from '../../shared/config.ts';
 import { formatClassDate, formatToday, upcomingClassDates } from '../../shared/dates.ts';
 import { linkContacts, policySections, waiverBlocks, waiverVersion } from '../../shared/legal.ts';
 import {
@@ -300,7 +300,7 @@ export default function RegisterFlow() {
                 ))}
               </div>
             ) : (
-              <p class="t-body">No upcoming dates are open right now. Call or text <a href={telHref()}>{site.phoneDisplay}</a> or email <a href={mailtoHref()}>{site.email}</a>.</p>
+              <p class="t-body">No upcoming dates are open right now. Email <a href={mailtoHref()}>{site.email}</a>.</p>
             )}
           </fieldset>
 

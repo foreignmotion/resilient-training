@@ -1,4 +1,4 @@
-import { fillPlaceholders, legal, mailtoHref, site, telHref } from './config.ts';
+import { fillPlaceholders, legal, mailtoHref, site } from './config.ts';
 import { policiesMarkdown, waiverMarkdown } from './legal.generated.ts';
 
 /**
@@ -88,9 +88,7 @@ export function policiesPlain(): string {
   ].join('\n\n');
 }
 
-/** Turn the phone number and email inside rendered policy HTML into tel:/mailto: links. */
+/** Turn the email address inside rendered policy HTML into a mailto: link. */
 export function linkContacts(html: string): string {
-  return html
-    .replace(site.phoneDisplay, `<a href="${telHref()}">${site.phoneDisplay}</a>`)
-    .replace(site.email, `<a href="${mailtoHref()}">${site.email}</a>`);
+  return html.replace(site.email, `<a href="${mailtoHref()}">${site.email}</a>`);
 }

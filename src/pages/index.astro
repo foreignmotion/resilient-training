@@ -24,7 +24,6 @@ const jsonLd = {
       name: site.orgName,
       url: site.url,
       areaServed: { '@type': 'AdministrativeArea', name: site.region },
-      ...(site.phoneTel ? { telephone: site.phoneTel } : {}),
       ...(site.email.includes('@') ? { email: site.email } : {}),
     },
     {

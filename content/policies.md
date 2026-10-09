@@ -18,6 +18,6 @@
 - **If thunder is heard during class,** we stop and take shelter until 30 minutes after the last thunder. If we end class early for safety, you may attend another Wednesday at no charge.
 - **Weather cancellations:** choose a full refund or a free move to another Wednesday.
 
-To cancel or reschedule: call or text [Phone number] or email [Email address].
+To cancel or reschedule, email [Email address].
 
 > Note (not shown on the site): the review step has a required checkbox, "I have read and agree to the refund, rescheduling and weather policies."

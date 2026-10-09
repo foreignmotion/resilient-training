@@ -74,7 +74,7 @@ async function afterPaid(env: Env, id: string, origin: string) {
   const date = formatClassDate(reg.class_date);
   const total = formatMoney(reg.amount_paid_cents ?? reg.total_cents);
   const studentLines = students.map((s) => `- ${s.full_name}, age ${s.age}${s.guardian_name ? ` (guardian: ${s.guardian_name})` : ''}`).join('\n');
-  const contact = `Call or text ${site.phoneDisplay} or email ${site.email}.`;
+  const contact = `Email ${site.email}.`;
 
   const text = `You're registered for ${course.name}.
 

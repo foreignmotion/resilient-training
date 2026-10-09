@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Panel from '../../components/Panel.astro';
 import RegisterFlow from '../../islands/RegisterFlow.tsx';
-import { course, mailtoHref, site, telHref } from '../../../shared/config.ts';
+import { course, mailtoHref, site } from '../../../shared/config.ts';
 ---
 <Layout
   title={`Register: ${course.name} | ${site.orgName}`}
@@ -21,7 +21,7 @@ import { course, mailtoHref, site, telHref } from '../../../shared/config.ts';
       <div class="register-root">
         <RegisterFlow client:only="preact" />
         <noscript>
-          <p class="t-body">Registration needs JavaScript turned on. To register another way, call or text <a href={telHref()}>{site.phoneDisplay}</a> or email <a href={mailtoHref()}>{site.email}</a>.</p>
+          <p class="t-body">Registration needs JavaScript turned on. To register another way, email <a href={mailtoHref()}>{site.email}</a>.</p>
         </noscript>
       </div>
     </Panel>

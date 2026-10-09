@@ -16,7 +16,7 @@ export const onRequestPost: Fn = async ({ request, env }) => {
   if (!sameOrigin(request)) return json({ error: 'Bad origin.' }, 403);
   if (!hasPrice()) return json({ error: 'Online registration opens once the course price is set.' }, 503);
   if (!env.STRIPE_SECRET_KEY) {
-    return json({ error: `Online payment isn’t open yet. To register now, call or text ${site.phoneDisplay} or email ${site.email}.` }, 503);
+    return json({ error: `Online payment isn’t open yet. To register now, email ${site.email}.` }, 503);
   }
 
   const input = sanitize(await request.json().catch(() => null));

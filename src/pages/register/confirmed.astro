@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Panel from '../../components/Panel.astro';
 import Button from '../../components/Button.astro';
-import { course, mailtoHref, site, telHref } from '../../../shared/config.ts';
+import { course, mailtoHref, site } from '../../../shared/config.ts';
 ---
 <Layout
   title={`You’re registered | ${site.orgName}`}
@@ -23,7 +23,7 @@ import { course, mailtoHref, site, telHref } from '../../../shared/config.ts';
           <h2 class="title title-section">See you Wednesday</h2>
         </header>
         <p class="t-body" data-confirm-line>Thank you. Your payment went through, and a confirmation email is on its way. We’ll email the training location before class.</p>
-        <p class="t-body">Questions before then? Call or text <a href={telHref()}>{site.phoneDisplay}</a> or email <a href={mailtoHref()}>{site.email}</a>.</p>
+        <p class="t-body">Questions before then? Email <a href={mailtoHref()}>{site.email}</a>.</p>
         <div class="btns"><Button variant="solid" href="/">Back to home</Button></div>
       </div>
     </Panel>

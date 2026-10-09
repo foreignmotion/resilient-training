@@ -12,18 +12,14 @@ export const site = {
   orgSubhead: 'Training Co',
   /** D1: production origin, used for Stripe return URLs, canonical links and emails. No trailing slash. */
   url: 'https://buildresilientskills.com',
-  /** D2: shown on the site and in emails. */
-  phoneDisplay: '[Phone number]',
-  /** D2: digits for tel: links, e.g. '+16155550100'. Leave empty until known. */
-  phoneTel: '',
   /** D2: public contact email. */
-  email: '[Email address]',
+  email: 'jether@buildresilientskills.com',
   /** Where owner notifications and NCRT interest messages go. Defaults to the public email. */
-  ownerEmail: '[Email address]',
+  ownerEmail: 'jether@buildresilientskills.com',
   /** Optional NCRT contact copied on NCRT interest messages. */
   ncrtEmail: '',
   /** "From" address for transactional email; must be on a domain verified in Resend. */
-  fromEmail: 'Resilient Skills <hello@buildresilientskills.com>',
+  fromEmail: 'Resilient Skills <jether@buildresilientskills.com>',
   region: 'Middle Tennessee',
 } as const;
 
@@ -66,10 +62,6 @@ export function priceLabel(): string {
   return hasPrice() ? formatMoney(course.priceCents) : '[Price]';
 }
 
-export function telHref(): string {
-  return site.phoneTel ? `tel:${site.phoneTel}` : 'tel:';
-}
-
 export function mailtoHref(): string {
   return site.email.includes('@') ? `mailto:${site.email}` : 'mailto:';
 }
@@ -78,7 +70,6 @@ export function mailtoHref(): string {
 export function fillPlaceholders(text: string): string {
   return text
     .replaceAll('[Organization name]', site.orgName)
-    .replaceAll('[Phone number]', site.phoneDisplay)
     .replaceAll('[Email address]', site.email)
     .replaceAll('[Price]', priceLabel());
 }
