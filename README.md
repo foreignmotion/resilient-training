@@ -18,7 +18,7 @@ D1 · Stripe Checkout · Resend · Google Sheet email list (via Apps Script).
 | Design tokens + styles | `src/styles/global.css` (see `DESIGN.md`, `PRODUCT.md`) |
 | Server endpoints | `functions/api/*`, roster at `functions/admin/*` |
 | Database schema | `migrations/0001_init.sql` |
-| Email list adapter | `functions/_lib/list.ts` (setup: `docs/google-sheet-list.md`) |
+| Signup sheet (paid registrations + email list) | `functions/_lib/sheet.ts`, `functions/_lib/list.ts` (setup: `docs/google-sheet.md`) |
 
 The training address is never stored or shown anywhere. Copy tells people it's emailed.
 
@@ -53,7 +53,7 @@ For `preview`, copy `.dev.vars.example` to `.dev.vars` and run `npm run db:migra
 3. Create the Pages project from this repo. Build command `npm run build`, output `dist`.
    Bind D1 as `DB` (Settings → Functions → D1 bindings) if not picked up from `wrangler.toml`.
 4. Environment variables (as secrets): `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`,
-   `RESEND_API_KEY`, `LIST_WEBHOOK_URL`, `LIST_WEBHOOK_SECRET`, `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD`.
+   `RESEND_API_KEY`, `SHEET_WEBHOOK_URL`, `SHEET_WEBHOOK_SECRET`, `ACCESS_TEAM_DOMAIN`, `ACCESS_AUD`.
 5. **Stripe:** add a webhook endpoint `https://YOUR-DOMAIN/api/stripe-webhook` for
    `checkout.session.completed`, `checkout.session.async_payment_succeeded` and
    `checkout.session.expired`. Use test-mode keys first.

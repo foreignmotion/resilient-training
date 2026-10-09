@@ -5,6 +5,7 @@ import { sendEmail } from '../_lib/email.ts';
 import type { Env, Fn } from '../_lib/env.ts';
 import { escapeHtml, json } from '../_lib/http.ts';
 import { addToList } from '../_lib/list.ts';
+import { addRegistrationToSheet } from '../_lib/sheet.ts';
 import { verifyStripeSignature } from '../_lib/stripe.ts';
 
 interface CheckoutSession {
@@ -56,10 +57,19 @@ async function afterPaid(env: Env, id: string, origin: string) {
   const reg = await env.DB.prepare('SELECT * FROM registrations WHERE id = ?').bind(id).first<Record<string, any>>();
   if (!reg) return;
   const { results: students } = await env.DB.prepare(
-    'SELECT full_name, age, guardian_name FROM students WHERE registration_id = ? ORDER BY position',
+    `SELECT full_name, age, guardian_name, food_allergies, medication_allergies, other_allergies, signature_typed
+     FROM students WHERE registration_id = ? ORDER BY position`,
   )
     .bind(id)
-    .all<{ full_name: string; age: number; guardian_name: string | null }>();
+    .all<{
+      full_name: string;
+      age: number;
+      guardian_name: string | null;
+      food_allergies: string;
+      medication_allergies: string;
+      other_allergies: string;
+      signature_typed: string;
+    }>();
 
   const date = formatClassDate(reg.class_date);
   const total = formatMoney(reg.amount_paid_cents ?? reg.total_cents);
@@ -119,6 +129,28 @@ Roster CSV: ${origin}/admin/roster?date=${reg.class_date}`,
       replyTo: reg.contact_email,
     }),
   ];
+  jobs.push(
+    addRegistrationToSheet(env, {
+      registrationId: id,
+      paidAt: reg.paid_at,
+      classDate: reg.class_date,
+      contactPhone: reg.contact_phone,
+      contactEmail: reg.contact_email,
+      emergencyName: reg.emergency_name,
+      emergencyPhone: reg.emergency_phone,
+      photoRelease: !!reg.photo_release,
+      amountPaid: total,
+      students: students.map((s) => ({
+        name: s.full_name,
+        age: s.age,
+        guardian: s.guardian_name ?? '',
+        food: s.food_allergies,
+        meds: s.medication_allergies,
+        other: s.other_allergies,
+        signature: s.signature_typed,
+      })),
+    }),
+  );
   if (reg.email_list_opt_in) {
     jobs.push(addToList(env, { email: reg.contact_email, source: 'registration', name: students[0]?.full_name, phone: reg.contact_phone }));
   }
