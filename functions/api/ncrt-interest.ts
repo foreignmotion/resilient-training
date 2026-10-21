@@ -24,8 +24,8 @@ export const onRequestPost: Fn = async ({ request, env }) => {
   try {
     await sendEmail(env, {
       to: [site.ownerEmail, site.ncrtEmail].filter(Boolean),
-      subject: `${fromHome ? 'Course interest' : 'NCRT course interest'}: ${firstName} ${lastName}`,
-      text: `${firstName} ${lastName} <${email}> is interested in ${fromHome ? 'a course' : 'NCRT courses'}.\n\nWhich course(s):\n${message}\n\nSent from the ${fromHome ? 'home' : 'Team (NCRT)'} page on ${site.orgName}'s website.`,
+      subject: `${fromHome ? 'Course interest' : 'NCRTeam course interest'}: ${firstName} ${lastName}`,
+      text: `${firstName} ${lastName} <${email}> is interested in ${fromHome ? 'a course' : 'NCRTeam courses'}.\n\nWhich course(s):\n${message}\n\nSent from the ${fromHome ? 'home' : 'Team (NCRTeam)'} page on ${site.orgName}'s website.`,
       replyTo: email,
     });
   } catch (err) {

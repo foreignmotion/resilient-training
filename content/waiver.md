@@ -28,7 +28,7 @@ _Wilderness Survival Fundamentals · [Organization name] and No Compromise Respo
 
 - One typed-signature field per student. Adult: "{name}: type your full name" (must match student name). Minor: "Parent or legal guardian of {name}: type {guardian}'s full name" (must match guardian name). Case-insensitive, whitespace collapsed.
 - Required checkbox: "I have read this release, I understand that I am giving up legal rights, and I agree to its terms."
-- Optional checkbox (default off): "Optional: [Organization name] and NCRT may use photos and video of the participants taken during class in their marketing, without payment."
+- Optional checkbox (default off): "Optional: [Organization name] and NCRTeam may use photos and video of the participants taken during class in their marketing, without payment."
 - Signing date displayed.
 
 ## Legal notes for the attorney

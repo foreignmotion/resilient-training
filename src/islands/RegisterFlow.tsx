@@ -435,7 +435,7 @@ export default function RegisterFlow() {
               I have read this release, I understand that I am giving up legal rights, and I agree to its terms.
             </Check>
             <Check id="waiver-photo" checked={st.photo} onChange={(v) => set('photo', v)}>
-              Optional: {site.orgName} and NCRT may use photos and video of the participants taken during class in their marketing, without payment.
+              Optional: {site.orgName} and NCRTeam may use photos and video of the participants taken during class in their marketing, without payment.
             </Check>
           </div>
 
