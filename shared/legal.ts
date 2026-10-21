@@ -1,4 +1,4 @@
-import { fillPlaceholders, legal, mailtoHref, site } from './config.ts';
+import { fillPlaceholders, legal, mailtoHref, policies, site } from './config.ts';
 import { policiesMarkdown, waiverMarkdown } from './legal.generated.ts';
 
 /**
@@ -76,8 +76,15 @@ export function policySections(): { sections: PolicySection[]; footer: Block[] }
     if (current && !afterLists) current.items.push(block);
     else footer.push(block);
   }
-  return { sections, footer };
+  // Hidden sections (config `policies.hidden`) stay in the markdown but aren't published.
+  // The "To cancel or reschedule..." footer belongs with Refunds, so it goes when Refunds is hidden.
+  const shown = sections.filter((sec) => !policies.hidden.includes(sec.title));
+  const refundsHidden = policies.hidden.includes('Refunds and rescheduling');
+  return { sections: shown, footer: refundsHidden ? [] : footer };
 }
+
+/** False when every policy section is hidden: no policies panel, page link, agreement checkbox or email text. */
+export const hasPolicies = () => policySections().sections.length > 0;
 
 /** Plain-text policy summary for emails. */
 export function policiesPlain(): string {

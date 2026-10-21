@@ -3,9 +3,10 @@
 The site writes to the **Wednesday Class Signup Sheet** through a small Google Apps Script
 bound to that sheet:
 
-- **Registrations** tab: one row per student, added when a registration is **paid**
-  (from the Stripe webhook). Includes class date, allergies, guardian, emergency contact,
-  signature and amount paid.
+- **Registrations** tab: one row per student, added when a registration is confirmed
+  (right away while students pay at class; after payment when Stripe is on). Includes class
+  date, allergies, guardian, emergency contact, signature and payment ("$60 due at class"
+  or "$60 paid online").
 - **Email list** tab: one row per email, from the home-page signup and from registrants
   who tick "Add me to the email list". Duplicates are skipped.
 
@@ -42,9 +43,9 @@ the URL stays the same.
 var TABS = {
   registration: {
     name: 'Registrations',
-    headers: ['Paid at', 'Class date', 'Student', 'Age', 'Parent or guardian', 'Food allergies',
+    headers: ['Registered at', 'Class date', 'Student', 'Age', 'Parent or guardian', 'Food allergies',
       'Medication allergies', 'Other allergies', 'Signed by', 'Contact phone', 'Contact email',
-      'Emergency contact', 'Emergency phone', 'Photo release', 'Amount paid (registration)',
+      'Emergency contact', 'Emergency phone', 'Photo release', 'Payment (registration)',
       'Registration ID'],
   },
   list: {
@@ -77,9 +78,9 @@ function addRegistration(sheet, d) {
   var idCol = TABS.registration.headers.length;
   if (columnValues(sheet, idCol).indexOf(String(d.registrationId).toLowerCase()) !== -1) return; // Stripe retry
   var rows = (d.students || []).map(function (s) {
-    return [new Date(d.paidAt), d.classDate, s.name, s.age, s.guardian, s.food || 'None',
+    return [new Date(d.registeredAt || d.paidAt), d.classDate, s.name, s.age, s.guardian, s.food || 'None',
       s.meds || 'None', s.other || 'None', s.signature, d.contactPhone, d.contactEmail,
-      d.emergencyName, d.emergencyPhone, d.photoRelease ? 'Yes' : 'No', d.amountPaid,
+      d.emergencyName, d.emergencyPhone, d.photoRelease ? 'Yes' : 'No', d.payment || d.amountPaid,
       d.registrationId].map(safe);
   });
   if (rows.length) sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, rows[0].length).setValues(rows);

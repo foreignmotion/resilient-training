@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Panel from '../../components/Panel.astro';
 import Button from '../../components/Button.astro';
-import { course, mailtoHref, site } from '../../../shared/config.ts';
+import { course, mailtoHref, payInPerson, site } from '../../../shared/config.ts';
 ---
 <Layout
   title={`You’re registered | ${site.orgName}`}
@@ -22,7 +22,12 @@ import { course, mailtoHref, site } from '../../../shared/config.ts';
           <p class="eyebrow">Registration complete</p>
           <h2 class="title title-section">See you Wednesday</h2>
         </header>
-        <p class="t-body" data-confirm-line>Thank you. Your payment went through, and a confirmation email is on its way. We’ll email the training location before class.</p>
+        <p class="t-body" data-confirm-line>{payInPerson()
+          ? 'Thank you. You’re registered, and a confirmation email is on its way. We’ll email the training location before class.'
+          : 'Thank you. Your payment went through, and a confirmation email is on its way. We’ll email the training location before class.'}</p>
+        {payInPerson() && (
+          <p class="t-body pay-note" data-pay-line><strong>Payment is due in person at class.</strong> Nothing was charged online; please bring payment with you on the day.</p>
+        )}
         <p class="t-body">Questions before then? Email <a href={mailtoHref()}>{site.email}</a>.</p>
         <div class="btns"><Button variant="solid" href="/">Back to home</Button></div>
       </div>
@@ -31,20 +36,30 @@ import { course, mailtoHref, site } from '../../../shared/config.ts';
 </Layout>
 
 <script>
-  import { course } from '../../../shared/config.ts';
+  import { course, payAtClassMessage } from '../../../shared/config.ts';
   import { formatClassDate } from '../../../shared/dates.ts';
 
-  // Fill in the date and email from the server once the Stripe redirect lands here.
+  // Fill in the date, email and amount from the server once registration (or the Stripe redirect) lands here.
   const id = new URLSearchParams(location.search).get('r');
   const line = document.querySelector<HTMLElement>('[data-confirm-line]');
+  const payLine = document.querySelector<HTMLElement>('[data-pay-line]');
   try { sessionStorage.removeItem('registration-draft-v1'); } catch {}
   if (id && line) {
     fetch(`/api/registrations/${encodeURIComponent(id)}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d: any) => {
         if (!d?.classDate) return;
-        const lead = d.status === 'paid' ? 'You’re registered for' : 'We’re confirming your payment for';
+        const inPerson = d.paymentMethod === 'in_person';
+        const lead = inPerson || d.status === 'paid' ? 'You’re registered for' : 'We’re confirming your payment for';
         line.textContent = `${lead} ${formatClassDate(d.classDate)}, ${course.timeLabel}. We’ll email the training location to ${d.email} before class.`;
+        if (inPerson && payLine) {
+          const [first, ...rest] = payAtClassMessage(d.totalCents, d.students).split('. ');
+          payLine.innerHTML = '';
+          const strong = document.createElement('strong');
+          strong.textContent = first + '.';
+          payLine.appendChild(strong);
+          payLine.appendChild(document.createTextNode(' ' + rest.join('. ')));
+        }
       })
       .catch(() => {});
   }

@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import Button from '../components/Button.astro';
 import { site } from '../../shared/config.ts';
+import { hasPolicies } from '../../shared/legal.ts';
 import bgPhoto from '../assets/images/image06_litter-rigging-overlook.jpg';
 import shareDefault from '../assets/images/image06_litter-rigging-overlook.jpg';
 
@@ -19,7 +20,7 @@ interface Props {
 }
 const { title, description, current, ogImage, jsonLd, noindex, footerLinks = [
   { href: '/ncrt/', label: 'Team' },
-  { href: '/policies/', label: 'Policies' },
+  ...(hasPolicies() ? [{ href: '/policies/', label: 'Policies' }] : []),
   { href: '/register/', label: 'Register' },
 ] } = Astro.props;
 

@@ -1,9 +1,10 @@
-import { course, hasPrice, legal, site } from '../../../shared/config.ts';
+import { course, hasPrice, legal, payInPerson, site } from '../../../shared/config.ts';
 import { formatClassDate, upcomingClassDates } from '../../../shared/dates.ts';
 import { sha256Hex, waiverText } from '../../../shared/legal.ts';
 import { isMinor, sanitize, signerFor, validateDetails, validateReview, validateWaiver } from '../../../shared/registration.ts';
 import type { Fn } from '../../_lib/env.ts';
 import { json, sameOrigin, ulid } from '../../_lib/http.ts';
+import { notifyRegistered } from '../../_lib/notify.ts';
 import { stripeRequest } from '../../_lib/stripe.ts';
 
 /**
@@ -12,10 +13,11 @@ import { stripeRequest } from '../../_lib/stripe.ts';
  * waiver version + hash, creates a Stripe Checkout Session and returns its URL.
  * The price comes from config only; client totals are ignored.
  */
-export const onRequestPost: Fn = async ({ request, env }) => {
+export const onRequestPost: Fn = async ({ request, env, waitUntil }) => {
   if (!sameOrigin(request)) return json({ error: 'Bad origin.' }, 403);
   if (!hasPrice()) return json({ error: 'Online registration opens once the course price is set.' }, 503);
-  if (!env.STRIPE_SECRET_KEY) {
+  const inPerson = payInPerson();
+  if (!inPerson && !env.STRIPE_SECRET_KEY) {
     return json({ error: `Online payment isn’t open yet. To register now, email ${site.email}.` }, 503);
   }
 
@@ -43,6 +45,16 @@ export const onRequestPost: Fn = async ({ request, env }) => {
   const ip = request.headers.get('CF-Connecting-IP') ?? '';
   const ua = (request.headers.get('User-Agent') ?? '').slice(0, 500);
 
+  // With no payment up front, cap registrations per IP so the form can't be used to send mass email.
+  if (inPerson && ip) {
+    const recent = await env.DB.prepare(
+      "SELECT COUNT(*) AS n FROM registrations WHERE signer_ip = ? AND created_at > ?",
+    ).bind(ip, new Date(Date.now() - 3600_000).toISOString()).first<{ n: number }>();
+    if ((recent?.n ?? 0) >= 5) {
+      return json({ error: `Too many registrations from this connection in the last hour. Please email ${site.email} and we’ll help.` }, 429);
+    }
+  }
+
   const stmts = [
     env.DB.prepare('INSERT OR IGNORE INTO waiver_versions (version, sha256, body_markdown, effective_at) VALUES (?, ?, ?, ?)').bind(
       legal.waiverVersion, waiverHash, waiver, now,
@@ -50,11 +62,12 @@ export const onRequestPost: Fn = async ({ request, env }) => {
     env.DB.prepare(
       `INSERT INTO registrations (id, created_at, class_date, contact_phone, contact_email, emergency_name, emergency_phone,
         email_list_opt_in, photo_release, policies_agreed_at, waiver_version, waiver_sha256, signed_at, signer_ip,
-        signer_user_agent, status, unit_price_cents, total_cents)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_payment', ?, ?)`,
+        signer_user_agent, status, unit_price_cents, total_cents, payment_method)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending_payment', ?, ?, ?)`,
     ).bind(
       id, now, input.date, input.phone.trim(), input.email.trim(), input.emName.trim(), input.emPhone.trim(),
       input.list ? 1 : 0, input.photo ? 1 : 0, now, legal.waiverVersion, waiverHash, now, ip, ua, unit, unit * n,
+      inPerson ? 'in_person' : 'stripe',
     ),
     ...input.students.map((s, i) => {
       const signer = signerFor(s, i);
@@ -78,6 +91,12 @@ export const onRequestPost: Fn = async ({ request, env }) => {
   await env.DB.batch(stmts);
 
   const origin = new URL(request.url).origin;
+  if (inPerson) {
+    // Confirmed now; payment is collected at class.
+    waitUntil(notifyRegistered(env, id, origin));
+    return json({ redirect: `/register/confirmed/?r=${id}`, id });
+  }
+
   try {
     const session = await stripeRequest<{ id: string; url: string }>(env.STRIPE_SECRET_KEY, 'checkout/sessions', {
       mode: 'payment',

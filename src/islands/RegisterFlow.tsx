@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { ComponentChildren } from 'preact';
-import { course, formatMoney, hasPrice, mailtoHref, priceLabel, site } from '../../shared/config.ts';
+import { course, formatMoney, hasPrice, mailtoHref, payInPerson, policyCopy, priceLabel, site } from '../../shared/config.ts';
 import { formatClassDate, formatToday, upcomingClassDates } from '../../shared/dates.ts';
-import { linkContacts, policySections, waiverBlocks, waiverVersion } from '../../shared/legal.ts';
+import { hasPolicies, linkContacts, policySections, waiverBlocks, waiverVersion } from '../../shared/legal.ts';
 import {
   allergyText,
   blankStudent,
@@ -27,7 +27,7 @@ const STORAGE_KEY = 'registration-draft-v1';
 const stepLabels: Record<Step, string> = {
   details: 'Register · Step 1 of 3 · Your details',
   waiver: 'Register · Step 2 of 3 · Release of liability',
-  review: 'Register · Step 3 of 3 · Review and pay',
+  review: payInPerson() ? 'Register · Step 3 of 3 · Review and confirm' : 'Register · Step 3 of 3 · Review and pay',
 };
 
 function initialState(dates: string[]): State {
@@ -234,7 +234,7 @@ export default function RegisterFlow() {
   async function pay() {
     const errs = validateReview(st);
     if (errs.length) return fail(errs);
-    if (!hasPrice()) return fail([{ key: 'policyAgree', message: 'Online payment opens once the course price is set. Please call or email to register.' }]);
+    if (!hasPrice()) return fail([{ key: 'policyAgree', message: `Registration opens once the course price is set. Please email ${site.email} to register.` }]);
     setErrors([]);
     setSubmitting(true);
     try {
@@ -245,11 +245,15 @@ export default function RegisterFlow() {
         body: JSON.stringify(payload),
       });
       const data: any = await res.json().catch(() => ({}));
+      if (res.ok && data.redirect) {
+        location.href = data.redirect;
+        return;
+      }
       if (!res.ok || !data.url) {
         fail(
           Array.isArray(data.errors) && data.errors.length
             ? data.errors
-            : [{ key: 'policyAgree', message: data.error || 'We couldn’t start checkout. Please try again, or call or email us.' }],
+            : [{ key: 'policyAgree', message: data.error || `We couldn’t complete your registration. Please try again, or email ${site.email}.` }],
         );
         setSubmitting(false);
         return;
@@ -489,33 +493,44 @@ export default function RegisterFlow() {
             <p class="t-body t-tight">Photo and video release: {st.photo ? 'granted' : 'not granted'}</p>
           </Kv>
 
+          {hasPolicies() && (
           <div class="group" style={{ gap: '2rem' }}>
-            {policies.sections.map((sec, i) => (
-              <div class="policy" key={sec.title}>
-                <h3 class="t-subhead">{sec.title}</h3>
-                {sec.items.map((b, j) => b.type === 'p' && <p key={j} class="t-body t-tight" dangerouslySetInnerHTML={{ __html: b.html }} />)}
-                {i === 0 && policies.footer.map((b, j) => b.type === 'p' && <p key={`f${j}`} class="t-body t-tight" dangerouslySetInnerHTML={{ __html: linkContacts(b.html) }} />)}
-              </div>
-            ))}
-            <Check id="f-policyAgree" checked={st.policyAgree} onChange={(v) => set('policyAgree', v)} invalid={bad('policyAgree')}>
-              I have read and agree to the refund, rescheduling and weather policies.
-            </Check>
-          </div>
+              {policies.sections.map((sec, i) => (
+                <div class="policy" key={sec.title}>
+                  <h3 class="t-subhead">{sec.title}</h3>
+                  {sec.items.map((b, j) => b.type === 'p' && <p key={j} class="t-body t-tight" dangerouslySetInnerHTML={{ __html: b.html }} />)}
+                  {i === 0 && policies.footer.map((b, j) => b.type === 'p' && <p key={`f${j}`} class="t-body t-tight" dangerouslySetInnerHTML={{ __html: linkContacts(b.html) }} />)}
+                </div>
+              ))}
+              <Check id="f-policyAgree" checked={st.policyAgree} onChange={(v) => set('policyAgree', v)} invalid={bad('policyAgree')}>
+                {policyCopy().agree}
+              </Check>
+            </div>
+          )}
 
           <Kv label="Payment">
             <p class="t-body t-tight">{n === 1 ? '1 student' : `${n} students`} × {priceLabel()} per student</p>
-            <p class="t-heading">Total {hasPrice() ? formatMoney(totalCents) : `[Price × ${n}]`}</p>
+            <p class="t-heading">{payInPerson() ? 'Due at class' : 'Total'} {hasPrice() ? formatMoney(totalCents) : `[Price × ${n}]`}</p>
+            {payInPerson() && (
+              <p class="t-body t-tight">Nothing is charged online. Please bring payment with you on the day of class.</p>
+            )}
           </Kv>
 
           <div class="flow" style={{ gap: '2rem' }}>
             <ErrorSummary errors={errors} fieldId={fieldId} attempt={attempt} />
             <div class="btns" style={{ columnGap: '1.5rem' }}>
               <button type="button" class="btn btn-solid" disabled={submitting} aria-disabled={submitting ? 'true' : undefined} onClick={pay}>
-                <span>{submitting ? 'Opening secure checkout…' : 'Continue to secure checkout'}</span>
+                <span>
+                  {payInPerson()
+                    ? submitting ? 'Registering…' : 'Complete registration'
+                    : submitting ? 'Opening secure checkout…' : 'Continue to secure checkout'}
+                </span>
               </button>
               <button type="button" class="linkbtn" onClick={() => go('waiver')}>Back to waiver</button>
             </div>
-            <p class="t-small" style={{ fontStyle: 'normal' }}>Payment is handled by Stripe. Your card details never touch this site.</p>
+            {!payInPerson() && (
+              <p class="t-small" style={{ fontStyle: 'normal' }}>Payment is handled by Stripe. Your card details never touch this site.</p>
+            )}
           </div>
         </div>
       )}

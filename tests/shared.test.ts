@@ -1,8 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { upcomingClassDates, formatClassDate } from '../shared/dates.ts';
-import { blankStudent, validateDetails, validateWaiver, signerFor, norm, type RegistrationInput } from '../shared/registration.ts';
-import { waiverBlocks, policySections, waiverText } from '../shared/legal.ts';
+import { blankStudent, validateDetails, validateReview, validateWaiver, signerFor, norm, type RegistrationInput } from '../shared/registration.ts';
+import { waiverBlocks, policySections, policiesPlain, waiverText } from '../shared/legal.ts';
 import { course } from '../shared/config.ts';
 
 // 2026-10-07 is a Wednesday. 15:00Z = 10:00 CDT, 14:59Z = 09:59 CDT.
@@ -61,6 +61,10 @@ test('signatures: adult signs own name, guardian signs for minor, case/space-ins
   assert.equal(norm('  A   b '), 'a b');
 });
 
+test('no policy agreement needed while every policy section is hidden', () => {
+  assert.deepEqual(validateReview({ ...base(), policyAgree: false }), []);
+});
+
 test('waiver agreement required', () => {
   const r = base();
   r.sigs = { '1': 'Ada Lovelace' };
@@ -73,10 +77,11 @@ test('legal text renders without notes and builder sections', () => {
   assert.ok(!text.includes('Form elements'));
   assert.equal(waiverBlocks()[0].type, 'h1');
   assert.ok(waiverBlocks().some((b) => b.type === 'p' && b.html.startsWith('<strong>9. Electronic signature.</strong>')));
+  // Refunds and Weather are both hidden for now (config policies.hidden), with the footer line.
   const p = policySections();
-  assert.deepEqual(p.sections.map((s) => s.title), ['Refunds and rescheduling', 'Weather']);
-  assert.equal(p.sections[0].items.length, 5);
-  assert.equal(p.sections[1].items.length, 5);
-  assert.equal(p.footer.length, 1);
-  assert.match(p.footer[0].type === 'p' ? p.footer[0].plain : '', /^To cancel or reschedule/);
+  assert.deepEqual(p.sections, []);
+  assert.equal(p.footer.length, 0);
+  assert.equal(policiesPlain(), '');
+  assert.ok(!policiesPlain().includes('refund, rescheduling'));
+  assert.ok(!policiesPlain().includes('Refunds and rescheduling'));
 });

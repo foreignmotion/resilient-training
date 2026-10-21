@@ -40,6 +40,29 @@ export const course = {
   timeZone: 'America/Chicago',
 } as const;
 
+export const payment = {
+  /**
+   * 'in_person': registration is free online; students pay at class.
+   * 'stripe': registration ends in Stripe Checkout (needs STRIPE_* secrets and the webhook).
+   */
+  mode: 'in_person' as 'in_person' | 'stripe',
+} as const;
+
+export const payInPerson = () => payment.mode === 'in_person';
+
+export const policies = {
+  /** Sections of content/policies.md to leave off the site and emails for now (matched by "## " title). */
+  hidden: ['Refunds and rescheduling', 'Weather'] as string[],
+} as const;
+
+const refundsShown = () => !policies.hidden.includes('Refunds and rescheduling');
+
+/** Section heading, page title and agreement wording follow which policies are shown. */
+export const policyCopy = () =>
+  refundsShown()
+    ? { title: 'Refunds and weather', agree: 'I have read and agree to the refund, rescheduling and weather policies.', missing: 'Agree to the refund, rescheduling and weather policies to continue.' }
+    : { title: 'Weather', agree: 'I have read and agree to the weather policy.', missing: 'Agree to the weather policy to continue.' };
+
 export const legal = {
   /** Bump when content/waiver.md changes. Each version is stored forever with its hash. */
   waiverVersion: '2026-10-06',
@@ -56,6 +79,12 @@ export const hasPrice = () => course.priceCents > 0;
 export function formatMoney(cents: number): string {
   const dollars = cents / 100;
   return '$' + (Number.isInteger(dollars) ? dollars.toString() : dollars.toFixed(2));
+}
+
+/** The pay-at-class line registrants see on the confirmation page and in their email. */
+export function payAtClassMessage(totalCents: number, studentCount: number): string {
+  const breakdown = studentCount > 1 ? ` (${studentCount} students × ${formatMoney(course.priceCents)})` : '';
+  return `Payment of ${formatMoney(totalCents)}${breakdown} is due in person at class. Nothing was charged online; please bring payment with you on the day.`;
 }
 
 export function priceLabel(): string {

@@ -9,7 +9,8 @@ import Fact from '../components/Fact.astro';
 import TextField from '../components/TextField.astro';
 import Policies from '../components/Policies.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { course, homeClassPhoto, priceLabel, site } from '../../shared/config.ts';
+import { hasPolicies } from '../../shared/legal.ts';
+import { course, homeClassPhoto, payInPerson, policyCopy, priceLabel, site } from '../../shared/config.ts';
 import nightSearch from '../assets/images/bg_night-search-headlamps.jpg';
 
 const images = import.meta.glob<{ default: ImageMetadata }>('../assets/images/*.{jpg,jpeg,png,webp}', { eager: true });
@@ -69,7 +70,7 @@ const jsonLd = {
         <div class="facts">
           <Fact label="When" style="flex: 1 1 12rem;">Every Wednesday, {course.timeLabel}</Fact>
           <Fact label="Where" style="flex: 1 1 12rem;">{site.region}</Fact>
-          <Fact label="Cost" style="flex: 1 1 12rem;">{priceLabel()} per student</Fact>
+          <Fact label="Cost" style="flex: 1 1 12rem;">{priceLabel()} per student{payInPerson() && ", paid at class"}</Fact>
         </div>
         <div class="cols" style="gap: 4rem;">
           <div class="stack" style="flex: 3 1 26rem;">
@@ -151,14 +152,16 @@ const jsonLd = {
     <ContactForm source="home" wide />
   </section>
 
+  {hasPolicies() && (
   <section id="policies" class="wrap anchor" style="padding-bottom: 5rem;">
     <Panel>
       <div class="stack-xl">
-        <SectionHeader eyebrow="Before you register" title="Refunds and weather" size="section" />
+        <SectionHeader eyebrow="Before you register" title={policyCopy().title} size="section" />
         <Policies />
       </div>
     </Panel>
   </section>
+  )}
 </Layout>
 
 <script>

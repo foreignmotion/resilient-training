@@ -2,7 +2,7 @@ import { site } from '../../shared/config.ts';
 import { formatClassDate } from '../../shared/dates.ts';
 import type { Fn } from '../_lib/env.ts';
 import { escapeHtml as e } from '../_lib/http.ts';
-import { loadRoster } from '../_lib/roster.ts';
+import { loadRoster, paymentLabel } from '../_lib/roster.ts';
 
 /** GET /admin — upcoming paid students grouped by class date. */
 export const onRequestGet: Fn = async ({ env }) => {
@@ -14,11 +14,11 @@ export const onRequestGet: Fn = async ({ env }) => {
     <section>
       <h2>${e(formatClassDate(date))} <small>${list.length} student${list.length === 1 ? '' : 's'}</small> <a href="/admin/roster?date=${date}">CSV</a></h2>
       <table>
-        <thead><tr><th>Student</th><th>Age</th><th>Guardian</th><th>Allergies</th><th>Contact</th><th>Emergency</th><th>Photo</th></tr></thead>
+        <thead><tr><th>Student</th><th>Age</th><th>Guardian</th><th>Allergies</th><th>Contact</th><th>Emergency</th><th>Photo</th><th>Payment</th></tr></thead>
         <tbody>${list.map((r) => `<tr>
           <td>${e(r.full_name)}</td><td>${r.age}</td><td>${e(r.guardian_name ?? '')}</td>
           <td>${e([r.food_allergies && 'Food: ' + r.food_allergies, r.medication_allergies && 'Meds: ' + r.medication_allergies, r.other_allergies && 'Other: ' + r.other_allergies].filter(Boolean).join('; ') || 'None')}</td>
-          <td>${e(r.contact_phone)}<br>${e(r.contact_email)}</td><td>${e(r.emergency_name)}<br>${e(r.emergency_phone)}</td><td>${r.photo_release ? 'Yes' : 'No'}</td>
+          <td>${e(r.contact_phone)}<br>${e(r.contact_email)}</td><td>${e(r.emergency_name)}<br>${e(r.emergency_phone)}</td><td>${r.photo_release ? 'Yes' : 'No'}</td><td>${e(paymentLabel(r))}</td>
         </tr>`).join('')}</tbody>
       </table>
     </section>`).join('');
@@ -34,6 +34,6 @@ export const onRequestGet: Fn = async ({ env }) => {
 </style></head><body>
 <h1>Upcoming roster</h1>
 <p><a href="/admin/roster">Download all upcoming (CSV)</a></p>
-<div class="wrap">${sections || '<p>No paid registrations for upcoming classes yet.</p>'}</div>
+<div class="wrap">${sections || '<p>No registrations for upcoming classes yet.</p>'}</div>
 </body></html>`, { headers: { 'Content-Type': 'text/html; charset=utf-8' } });
 };

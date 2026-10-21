@@ -1,3 +1,5 @@
+import { policyCopy } from './config.ts';
+import { hasPolicies } from './legal.ts';
 /**
  * Registration shape and validation, shared by the /register island (for instant
  * feedback) and /api/registrations (the authority). Ported from the prototype logic.
@@ -111,9 +113,9 @@ export function validateWaiver(r: RegistrationInput): Errors {
 }
 
 export function validateReview(r: RegistrationInput): Errors {
-  return r.policyAgree
+  return r.policyAgree || !hasPolicies()
     ? []
-    : [{ key: 'policyAgree', message: 'Agree to the refund, rescheduling and weather policies to continue.' }];
+    : [{ key: 'policyAgree', message: policyCopy().missing }];
 }
 
 /** Server-side: coerce untrusted JSON into a RegistrationInput, trimming and length-capping strings. */

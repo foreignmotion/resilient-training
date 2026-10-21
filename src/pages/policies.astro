@@ -3,12 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import Panel from '../components/Panel.astro';
 import Policies from '../components/Policies.astro';
 import Button from '../components/Button.astro';
-import { site } from '../../shared/config.ts';
+import { policyCopy, site } from '../../shared/config.ts';
+import { hasPolicies } from '../../shared/legal.ts';
+
+if (!hasPolicies()) return Astro.redirect('/');
 ---
-<Layout title={`Refunds and weather policies | ${site.orgName}`} description="Refund, rescheduling and weather policies for our Wednesday field courses.">
+<Layout title={`${policyCopy().title} policies | ${site.orgName}`} description={`${policyCopy().title} policies for our Wednesday field courses.`}>
   <section class="wrap stack reveal" style="padding-top: 5rem; padding-bottom: 3rem; gap: 1.5rem;">
     <p class="eyebrow">Before you register</p>
-    <h1 class="t-heading">Refunds and weather</h1>
+    <h1 class="t-heading">{policyCopy().title}</h1>
   </section>
   <div class="wrap" style="padding-bottom: 6rem;">
     <Panel>

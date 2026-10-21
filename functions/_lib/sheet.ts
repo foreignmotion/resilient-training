@@ -32,6 +32,9 @@ export interface SheetStudent {
 
 export interface SheetRegistration {
   registrationId: string;
+  /** When the registration was confirmed (paid online, or registered to pay at class). */
+  registeredAt: string;
+  /** Same as registeredAt; kept for sheet scripts deployed before pay-at-class. */
   paidAt: string;
   classDate: string;
   contactPhone: string;
@@ -39,6 +42,9 @@ export interface SheetRegistration {
   emergencyName: string;
   emergencyPhone: string;
   photoRelease: boolean;
+  /** e.g. "$60 due at class" or "$60 paid online". */
+  payment: string;
+  /** Same as payment; kept for older sheet scripts. */
   amountPaid: string;
   students: SheetStudent[];
 }

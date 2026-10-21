@@ -2,6 +2,8 @@ export interface RosterRow {
   id: string;
   class_date: string;
   status: string;
+  payment_method: string;
+  total_cents: number;
   contact_phone: string;
   contact_email: string;
   emergency_name: string;
@@ -20,8 +22,16 @@ export interface RosterRow {
   signature_typed: string;
 }
 
+/** "Paid online" or "$60 due at class" for one registration. */
+export const paymentLabel = (r: Pick<RosterRow, 'payment_method' | 'status' | 'total_cents'>) =>
+  r.payment_method === 'in_person' && r.status === 'pending_payment'
+    ? `$${(r.total_cents / 100).toFixed(r.total_cents % 100 ? 2 : 0)} due at class`
+    : r.status === 'paid' ? 'Paid online' : r.status;
+
 export async function loadRoster(db: D1Database, date: string | null, includeAll: boolean) {
-  const where = [includeAll ? "r.status != 'pending_payment'" : "r.status = 'paid'"];
+  // Paid online, or registered to pay at class (still pending until collected).
+  const confirmed = "(r.status = 'paid' OR (r.payment_method = 'in_person' AND r.status = 'pending_payment'))";
+  const where = [includeAll ? `(r.status != 'pending_payment' OR r.payment_method = 'in_person')` : confirmed];
   const binds: string[] = [];
   if (date) {
     where.push('r.class_date = ?');
@@ -31,7 +41,7 @@ export async function loadRoster(db: D1Database, date: string | null, includeAll
   }
   const { results } = await db
     .prepare(
-      `SELECT r.id, r.class_date, r.status, r.contact_phone, r.contact_email, r.emergency_name, r.emergency_phone,
+      `SELECT r.id, r.class_date, r.status, r.payment_method, r.total_cents, r.contact_phone, r.contact_email, r.emergency_name, r.emergency_phone,
         r.photo_release, r.amount_paid_cents, r.signed_at, r.waiver_version,
         s.position, s.full_name, s.age, s.guardian_name, s.food_allergies, s.medication_allergies, s.other_allergies, s.signature_typed
        FROM registrations r JOIN students s ON s.registration_id = r.id
