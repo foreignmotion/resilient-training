@@ -35,7 +35,7 @@ const jsonLd = {
       hasCourseInstance: {
         '@type': 'CourseInstance',
         courseMode: 'onsite',
-        courseSchedule: { '@type': 'Schedule', byDay: 'https://schema.org/Wednesday', repeatFrequency: 'P1W', startTime: '13:00', endTime: '16:00' },
+        courseSchedule: { '@type': 'Schedule', byDay: 'https://schema.org/Wednesday', repeatFrequency: 'P1W', startTime: '14:00', endTime: '17:00' },
         location: { '@type': 'Place', name: site.region },
       },
     },
@@ -44,7 +44,7 @@ const jsonLd = {
 ---
 <Layout
   title={`${site.orgName}: Wilderness survival, medical and ropes training in ${site.region}`}
-  description={`Hands-on field courses in wilderness survival, backcountry medicine and ropes in ${site.region}. ${course.name} runs every Wednesday, 1:00–4:00 PM.`}
+  description={`Hands-on field courses in wilderness survival, backcountry medicine and ropes in ${site.region}. ${course.name} runs every Wednesday, ${course.timeLabel}.`}
   current="home"
   jsonLd={jsonLd}
 >

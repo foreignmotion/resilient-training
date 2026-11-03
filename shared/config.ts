@@ -28,7 +28,7 @@ export const course = {
   /** D3: price per student in cents. 0 shows "[Price]" and blocks checkout. */
   priceCents: 3000,
   currency: 'usd',
-  timeLabel: '1:00–4:00 PM',
+  timeLabel: '2:00–5:00 PM',
   /** Class weekday, 0 = Sunday. */
   weekday: 3,
   /** How many upcoming class dates to offer. */
